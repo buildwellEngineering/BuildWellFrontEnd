@@ -1,0 +1,72 @@
+
+  
+  input, textarea {
+    width: 100%;
+    height: 30px;
+    background: #f5faff;
+    color: #00365E;
+    border: 1px solid black;
+    font-weight: lighter;
+    padding: 5px;
+    font-size: 1.2em;
+  }
+
+  textarea{
+    height:100px;
+  }
+  
+  input:hover, textarea:hover {
+    background: silver;
+  }
+  
+  label {
+    font-weight: lighter;
+    padding-bottom: 5px;
+    color: #00365E;
+  }
+  
+  input[type='submit'] {
+    width: 120px;
+    height: 30px;
+    background: #00365E;
+    color: rgb(255, 225, 0);
+    padding: 5px;
+    font-weight: normal;
+  }
+  
+  .contactUsLine {
+    width: 100px; /* 200px */
+    height: 5px; /* 10px */
+    background: #EDCD1F;
+    margin: 0 auto; /* Center the line */
+  }
+  
+  @media screen and (max-width: 768px) {
+    .contact-us-title, .contactUsLine {
+      text-align: center;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+  
+  .map iframe {
+    border: 2px solid silver;
+  }
+  
+  .contact-left, .contact-right {
+    margin-top: 30px;
+  }
+  
+  .contact-right .address, .contact-right .quote {
+    color: #00365E;
+  }
+  
+  .contact-right .quote {
+    margin-top: auto;
+  }
+
+  .grid {
+    display: grid;
+    place-items: end;
+  }
+  

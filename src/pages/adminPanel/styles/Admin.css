@@ -1,0 +1,60 @@
+.adminDashboard {
+  display: flex;
+  min-height: 100vh;
+}
+
+.sidebar {
+  width: 250px;
+  border-right: 1px solid #ddd;
+}
+
+.dashboard {
+  flex: 1;
+  padding: 20px;
+}
+
+
+.admin-panel-container {
+  min-height: 100vh;
+  display: flex; /* Allow content to fill vertically */
+  /*background-image: url('../../../assests/Images/adminLogin.jpg'); /* Assuming image is in 'public' folder */
+  background-size: cover; /* Stretch image to fill container */
+  background-position: center; /* Center image horizontally and vertically */
+  background-repeat: no-repeat; /* Prevent image tiling */
+}
+
+.login-section {
+  background-color: #f8f9fa;
+  padding: 2rem;
+}
+
+.image-section {
+  /* background-image: url('https://via.placeholder.com/600x400'); */
+  background-size: cover;
+  background-position: center;
+}
+
+@media (max-width: 992px) {
+  .image-section {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .login-section {
+    width: 100%;
+    padding: 1rem;
+  }
+}
+
+.show-hide-btn {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  padding-right: 10px;
+  background-color: transparent;
+  border: none;
+}

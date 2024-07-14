@@ -1,0 +1,16 @@
+*{
+    padding: 0px;
+    margin: 0px;
+}
+
+.admin-btn{
+    background: #00365E !important;
+    color: #EDCD1F !important;
+    /* padding: 10px; */
+}
+
+footer p{
+    font-size: 1.2rem;
+    color: #00365E;
+    font-weight: bold;
+}

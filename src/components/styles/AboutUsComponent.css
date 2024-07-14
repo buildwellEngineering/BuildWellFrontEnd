@@ -1,0 +1,67 @@
+.about-us {
+  position: relative;
+  overflow: hidden;
+  background: #eef0f2;
+}
+
+.about-us .container {
+  position: relative;
+  z-index: 1;
+}
+
+.about-us .aboutUsLine {
+  width: 100px; /* 200px */
+  height: 5px; /* 10px */
+  background: #EDCD1F;
+}
+
+.about-us-title {
+  color: #00365E;
+  margin-bottom: 0; /* Ensure the heading and line are close together */
+}
+
+.background-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  z-index: 0;
+}
+
+@media screen and (max-width: 992px) {
+  .about-us h1,
+  .about-us p {
+    padding-left: 25px;
+    padding-right: 25px;
+  }
+
+  .background-image {
+    display: none;
+  }
+
+  .about-us .aboutUsLine {
+    width: 130px;
+    margin-left: 25px;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .about-us h1 {
+    font-size: 2.5rem;
+  }
+
+  .about-us .aboutUsLine {
+    width: 130px;
+    margin-left: 25px;
+  }
+}
+.about-us p {
+  word-wrap: break-word; /* Allows breaking long words */
+  word-break: break-word; /* Ensure long words break to avoid overflow */
+  white-space: pre-line; /* Preserves newline characters */
+}
