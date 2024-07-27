@@ -12,11 +12,6 @@ const sectionsSlice = createSlice({
   initialState,
   reducers: {
     setSectionData: (state, action) => {
-      // const { sectionName, data } = action.payload;
-      // state[sectionName] = data;
-      // state[action.payload.sectionName] = action.payload.data;
-      // console.log(state)
-      //state[action.payload.sectionName] = { sectionText: action.payload.data.sectionText };
       if(action.payload.sectionName === 'aboutUs'){
         state[action.payload.sectionName] = { sectionText: action.payload.data.sectionText, sectionMediaUrl: action.payload.data.sectionMediaUrl1 };
       }

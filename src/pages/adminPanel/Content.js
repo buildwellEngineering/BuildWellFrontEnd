@@ -9,7 +9,6 @@ import axios from 'axios';
 
 export default function Content() {
 
-
   const dispatch = useDispatch();
   const aboutUsData = useSelector(state => state.sections.aboutUs);
   const ourMissionOurTechnologiesData = useSelector(state => state.sections.ourMissionOurTechnologies);

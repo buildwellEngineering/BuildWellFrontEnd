@@ -1,23 +1,3 @@
-// import { createSlice } from '@reduxjs/toolkit';
-
-// const messagesSlice = createSlice({
-//   name: 'messages',
-//   initialState: [],
-//   reducers: {
-//     getMessage: (state, action) => {
-//       state.push(action.payload);
-//     },
-//     deleteMessage: (state, action) => {
-//       return state.filter(message => message.id !== action.payload);
-//     },
-//     readByAdmin: (state,action) =>{
-
-//     }
-//   },
-// });
-
-// export const { addMessage, removeMessage } = messagesSlice.actions;
-// export default messagesSlice.reducer;
 
 
 // messagesSlice.js

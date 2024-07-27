@@ -1,9 +1,5 @@
 import React,{useEffect, useState} from 'react';
 import './styles/Projects.css';
-// import img1 from '../../assests/Images/ProjectsNew/DSC_0085.jpg';
-// import img2 from '../../assests/Images/ProjectsNew/DSC_0962.jpg';
-// import img3 from '../../assests/Images/ProjectsNew/DSC_0104.jpg';
-// import img4 from '../../assests/Images/ProjectsNew/DSC_0271.jpg';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 

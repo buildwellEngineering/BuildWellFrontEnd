@@ -27,8 +27,6 @@ export default function Analytics() {
 
   return (
     <div className='p-4'>
-      {/* <h1>Analytics</h1>
-      <p>Analytics content goes here...</p> */}
       <>
         <div className='container'>
           <div className='row d-flex justify-content-center'>
