@@ -4,22 +4,12 @@
 
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-// import Loader from '../../components/Loader';
 import './styles/Projects.css'
-// import { useNavigate } from 'react-router-dom';
-// import { useSelector } from 'react-redux';
+import useAxiosInstance from '../../axiosInstance/AxiosInstance';
 
 const Projects = () => {
 
-  // const loginStatus = useSelector((state)=>state.LoginStatus.isLoggedIn);
-  // console.log(loginStatus)
-  // const navigate = useNavigate();
-
-  // useEffect(()=>{
-  //   if (!loginStatus) {
-  //     navigate('/adminLogin');
-  //   }
-  // },[]);
+  const axiosInstance = useAxiosInstance();
 
   const [projects, setProjects] = useState([]);
   const [resetProjects, setResetProjects] = useState([]);
@@ -34,11 +24,11 @@ const Projects = () => {
 
     try {
       //const response = await axios.get('http://localhost:7777/projects/getProjects');
-      const response = await axios.get('https://buildwell-engineering.vercel.app/projects/getProjects');
+      // const response = await axios.get('https://buildwell-engineering.vercel.app/projects/getProjects',{withCredentials:true});
+
+      const response = await axiosInstance.get('/projects/getProjects');
       setProjects(response.data);
       setResetProjects(response.data);
-      //console.log(response.data)
-
       setLoading(false);
     } catch (error) {
       console.log(error);
@@ -53,9 +43,7 @@ const Projects = () => {
   }, [])
 
   const editProject = (project) => {
-    //console.log(project)
     setSelectedProject(project)
-    //console.log(project)
     setNewImage(false); // Reset newImage when a new project is selected for editing
   };
 
@@ -73,18 +61,10 @@ const Projects = () => {
   };
 
   const handleTitleChange = (event) => {
-    // const updatedProjects = projects.map((project) =>
-    //   project.id === selectedProject.id ? { ...project, title: event.target.value } : project
-    // );
-    // setProjects(updatedProjects);
     setSelectedProject({ ...selectedProject, projectTitle: event.target.value });
   };
 
   const handleDescriptionChange = (event) => {
-    // const updatedProjects = projects.map((project) =>
-    //   project.id === selectedProject.id ? { ...project, description: event.target.value } : project
-    // );
-    // setProjects(updatedProjects);
     setSelectedProject({ ...selectedProject, projectDescription: event.target.value });
   };
 
@@ -97,7 +77,6 @@ const Projects = () => {
     if (selectedProject) {
       const originalProject = resetProjects.find(project => project.id === selectedProject.id);
       setSelectedProject(originalProject);
-      // setNewImage(null);
     }
   };
 
@@ -139,16 +118,17 @@ const Projects = () => {
         console.log(`${key}: ${value}`);
       }
 
-      // const response = await axios.post('http://localhost:7777/projects/add', formData, {
+      // const response = await axios.post('https://buildwell-engineering.vercel.app/projects/add', formData, {
       //   headers: {
       //     'Content-Type': 'multipart/form-data',
       //   },
-      // });
+      //   withCredentials: true
+      // })
 
-      const response = await axios.post('https://buildwell-engineering.vercel.app/projects/add', formData, {
+      const response = await axiosInstance.post('/projects/add', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
-        },
+        }
       })
 
       if (response.status === 201) {
@@ -177,16 +157,18 @@ const Projects = () => {
         console.error('No project selected for deletion.');
         return;
       }
-      console.log(selectedProject._id)
-      // const response = await axios.delete(`http://localhost:7777/projects/delete`, {
-      //   data: { projectId: selectedProject._id }
+      // console.log(selectedProject._id)
+      // const response = await axios.delete(`https://buildwell-engineering.vercel.app/projects/delete`, {
+      //   data: { projectId: selectedProject._id },
+      //   withCredentials: true
       // });
-      const response = await axios.delete(`https://buildwell-engineering.vercel.app/projects/delete`, {
+
+      const response = await axiosInstance.delete(`/projects/delete`, {
         data: { projectId: selectedProject._id }
       });
 
       if (response.status === 200) {
-        console.log('Project deleted successfully.');
+        // console.log('Project deleted successfully.');
         // Filter out the deleted project from state
         const updatedProjects = projects.filter(project => project._id !== selectedProject._id);
         setProjects(updatedProjects);
@@ -218,20 +200,16 @@ const Projects = () => {
       }
 
       //const response = await axios.put(`http://localhost:7777/projects/update`, formData);
-      const response = await axios.put(`https://buildwell-engineering.vercel.app/projects/update`, formData);
+      // const response = await axios.put(`https://buildwell-engineering.vercel.app/projects/update`, formData,{
+      //   withCredentials:true
+      // });
+
+      const response = await axiosInstance.put(`/projects/update`, formData);
 
       if (response.status === 200) {
-        // console.log('Project updated successfully.');
-        // // Update projects state with updated project
-        // const updatedProjects = projects.map(project =>
-        //   project._id === selectedProject._id ? selectedProject : project
-        // );
-        // setProjects(updatedProjects);
-
-        console.log('Project updated successfully.');
-        // Fetch all projects again
         //const { data } = await axios.get('http://localhost:7777/projects/getProjects');
-        const {data} = await axios.get('https://buildwell-engineering.vercel.app/projects/getProjects');
+        // const {data} = await axios.get('https://buildwell-engineering.vercel.app/projects/getProjects',{withCredentials:true} );
+        const {data} = await axiosInstance.get('/projects/getProjects');
         setProjects(data);
 
       } else {
@@ -349,13 +327,6 @@ const Projects = () => {
                     <span className="close" onClick={handleClose} style={{ color: '#EDCD1F', fontSize: '3rem' }}>&times;</span>
                     <div className="d-flex justify-content-center align-items-center flex-column flex-lg-row" style={{ overflow: 'auto' }}>
                       <div className="col-lg-6 lightbox-left text-center text-md-start mb-3 mb-md-0" style={{ overflowY: 'auto' }}>
-                        {/* {selectedProject.projectMediaUrl ? (
-                            <img src={URL.createObjectURL(selectedProject.projectMediaUrl)} alt={selectedProject.projectTitle} className="img-fluid" />
-                          ) : (
-                            <div className="d-flex justify-content-center align-items-center" style={{ width: '100%', height: '200px', border: '1px solid #ccc', borderRadius: '4px', background: '#f8f9fa' }}>
-                              <p className="text-muted">No image selected</p>
-                            </div>
-                          )} */}
                         {selectedProject.projectMediaUrl ? (
                           <img src={selectedProject.projectMediaUrl instanceof File ? URL.createObjectURL(selectedProject.projectMediaUrl) : selectedProject.projectMediaUrl} alt={selectedProject.projectTitle} className="img-fluid" />
                         ) : (

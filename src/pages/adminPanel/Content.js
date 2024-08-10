@@ -5,11 +5,13 @@ import HeaderComponent from '../../components/HeaderComponent.js';
 import { useSelector, useDispatch } from 'react-redux';
 import { setSectionData } from '../../store/slices/SectionsSLice';
 import axios from 'axios';
+import useAxiosInstance from '../../axiosInstance/AxiosInstance.js'
 // import { useNavigate } from 'react-router-dom';
 
 export default function Content() {
 
   const dispatch = useDispatch();
+  const axiosInstance = useAxiosInstance(); // Use the custom axios instance
   const aboutUsData = useSelector(state => state.sections.aboutUs);
   const ourMissionOurTechnologiesData = useSelector(state => state.sections.ourMissionOurTechnologies);
   const headerData = useSelector(state => state.sections.header);
@@ -18,6 +20,70 @@ export default function Content() {
   const [ourMissionOurTechnologiesImageChange,setOurMissionOurTechnologiesImageChange] = useState(false);
   const [headerVideoChange0,setHeaderVideoChange0] = useState(false);
   const [headerImageChange1,setHeaderImageChange1] = useState(false);
+
+  const [achievements, setAchievements] = useState([]);
+  const [newAchievement, setNewAchievement] = useState({ name: '', value: '' });
+  const [editingId, setEditingId] = useState(null);
+
+  useEffect(() => {
+    axiosInstance.get('/homePage/getData/counter')
+        .then(response => setAchievements(response.data))
+        .catch(error => console.error('Error fetching achievements:', error));
+    
+    // axios.get('http://localhost:7777/homePage/getData/counter',{withCredentials:true})
+    //     .then(response => setAchievements(response.data))
+    //     .catch(error => console.error('Error fetching achievements:', error));
+}, []);
+
+  const handleAddOrUpdate = () => {
+    if (editingId) {
+        // Update existing achievement
+        axiosInstance.put(`/update/counterUpdate/${editingId}`, newAchievement)
+        .then(response => {
+          setAchievements(achievements.map(achievement =>
+            achievement._id === editingId ? response.data : achievement
+          ));
+          resetForm();
+        })
+        .catch(error => console.error('Error updating achievement:', error));
+        // axios.put(`http://localhost:7777/update/counterUpdate/${editingId}`, newAchievement,{withCredentials:true})
+        //     .then(response => {
+        //         setAchievements(achievements.map(achievement =>
+        //             achievement._id === editingId ? response.data : achievement
+        //         ));
+        //         resetForm();
+        //     })
+        //     .catch(error => console.error('Error updating achievement:', error));
+    } else {
+        // Add new achievement
+        axiosInstance.post('/update/counterAdd', newAchievement)
+            .then(response => {
+                setAchievements([...achievements, response.data]);
+                resetForm();
+            })
+            .catch(error => console.error('Error adding achievement:', error));
+        // axios.post('http://localhost:7777/update/counterAdd', newAchievement,{withCredentials:true})
+        //     .then(response => {
+        //         setAchievements([...achievements, response.data]);
+        //         resetForm();
+        //     })
+        //     .catch(error => console.error('Error adding achievement:', error));
+    }
+  };
+
+  const handleDelete = (id) => {
+    axiosInstance.delete(`http://localhost:7777/update/counterDelete/${id}`)
+        .then(() => setAchievements(achievements.filter(achievement => achievement._id !== id)))
+        .catch(error => console.error('Error deleting achievement:', error));
+    // axios.delete(`http://localhost:7777/update/counterDelete/${id}`,{withCredentials:true})
+    //     .then(() => setAchievements(achievements.filter(achievement => achievement._id !== id)))
+    //     .catch(error => console.error('Error deleting achievement:', error));
+  };
+
+  const resetForm = () => {
+    setNewAchievement({ name: '', value: '' });
+    setEditingId(null);
+  };
 
   // Initialize local state
   const [aboutUs, setAboutUs] = useState({
@@ -43,7 +109,8 @@ export default function Content() {
     const fetchDataAboutUs = async () => {
       try {
         // const response = await axios.get('http://localhost:7777/homePage/getData/aboutUs');
-        const response = await axios.get('https://buildwell-engineering.vercel.app/homePage/getData/aboutUs');
+        const response = await axiosInstance.get('/homePage/getData/aboutUs');
+        // const response = await axios.get('https://buildwell-engineering.vercel.app/homePage/getData/aboutUs');
         const record = response.data;
         dispatch(setSectionData({ sectionName: 'aboutUs', data: record }));
       } catch (error) {
@@ -234,9 +301,9 @@ export default function Content() {
     }
 
     try {
-      console.log(aboutusImageChange,aboutusImageChange.toString(),aboutUs.sectionText)
       //const response = await axios.put('http://localhost:7777/update/aboutUs', formData);
-      const response = await axios.put('https://buildwell-engineering.vercel.app/update/aboutUs',formData);
+      // const response = await axios.put('https://buildwell-engineering.vercel.app/update/aboutUs',formData,{withCredentials:true});
+      const response = await axiosInstance.put('/update/aboutUs',formData);
 
       if (response.status >= 200 && response.status < 300) {
         // dispatch(setSectionData({ sectionName: 'aboutUs', data: { sectionText: aboutUs.sectionText, sectionMediaUrl: aboutUs.sectionMediaUrl } }));
@@ -281,11 +348,11 @@ export default function Content() {
     try {
       //console.log(ourMissionOurTechnologies,ourMissionOurTechnologiesImageChange.toString(),ourMissionOurTechnologies.sectionText1,ourMissionOurTechnologies.sectionText2)
       //const response = await axios.put('http://localhost:7777/update/ourMissionOurTechnologies', formData);
-      const response = await axios.put('https://buildwell-engineering.vercel.app/update/ourMissionOurTechnologies', formData);
+      // const response = await axios.put('https://buildwell-engineering.vercel.app/update/ourMissionOurTechnologies', formData,{withCredentials:true});
+      const response = await axiosInstance.put('/update/ourMissionOurTechnologies', formData);
 
       if (response.status >= 200 && response.status < 300) {
         // dispatch(setSectionData({ sectionName: 'aboutUs', data: { sectionText: aboutUs.sectionText, sectionMediaUrl: aboutUs.sectionMediaUrl } }));
-        console.log('Data updated successfully on the server');
       } else {
         throw new Error('Failed to update data on the server');
       }
@@ -330,13 +397,13 @@ export default function Content() {
     }
 
     try {
-      console.log(headerVideoChange0,headerImageChange1,headerVideoChange0.toString(),headerImageChange1.toString(),header.sectionText)
       //const response = await axios.put('http://localhost:7777/update/header', formData);
-      const response = await axios.put('https://buildwell-engineering.vercel.app/update/header', formData);
+      // const response = await axios.put('https://buildwell-engineering.vercel.app/update/header', formData,{withCredentials:true});
+      const response = await axiosInstance.put('/update/header', formData);
+
 
       if (response.status >= 200 && response.status < 300) {
         // dispatch(setSectionData({ sectionName: 'aboutUs', data: { sectionText: aboutUs.sectionText, sectionMediaUrl: aboutUs.sectionMediaUrl } }));
-        console.log('Data updated successfully on the server');
         setHeaderImageChange1(false)
         setHeaderVideoChange0(false)
       } else {
@@ -437,6 +504,53 @@ export default function Content() {
           </form>
         </div>
         </>
+
+      <>
+      <div className="admin-panel my-5">
+      <section className="Counter py-5" style={{ background: '#EDCD1F' }}>
+                <div className="container">
+                    <div className="row px-3 d-flex justify-content-center">
+                        {achievements.map(achievement => (
+                            <div key={achievement._id} className="col-6 col-lg-3 d-flex justify-content-center flex-column pb-4">
+                                <h2 className="fw-bold" style={{ fontSize: '4rem', textAlign: 'center', color: '#00365E', opacity: 0.8 }}>
+                                    {achievement.value}
+                                </h2>
+                                <h4 className="fw-bold" style={{ textAlign: 'center', color: '#00365E', opacity: 0.8 }}>
+                                    {achievement.name}
+                                </h4>
+                                <button className="admin-btn" onClick={() => {
+                                    setNewAchievement({ name: achievement.name, value: achievement.value });
+                                    setEditingId(achievement._id);
+                                }}>Edit</button>
+                                <button className="admin-btn" onClick={() => handleDelete(achievement._id)}>Delete</button>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </section>
+
+            <section className="admin-panel my-3">
+                <div className="form-group">
+                    <input
+                        type="text"
+                        placeholder="Achievement Name"
+                        value={newAchievement.name}
+                        onChange={(e) => setNewAchievement({ ...newAchievement, name: e.target.value })}
+                    />
+                    <input
+                        type="number"
+                        placeholder="Achievement Value"
+                        value={newAchievement.value}
+                        onChange={(e) => setNewAchievement({ ...newAchievement, value: e.target.value })}
+                    />
+                    <button className="admin-btn" onClick={handleAddOrUpdate}>
+                        {editingId ? 'Update Achievement' : 'Add Achievement'}
+                    </button>
+                    {editingId && <button className="admin-btn" onClick={resetForm}>Cancel</button>}
+                </div>
+            </section>
+        </div>
+      </>  
       </div>
   )
 }  

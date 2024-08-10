@@ -1,75 +1,23 @@
-@media screen and (min-width: 992px) {
-  .our-mission::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    width: 50%;
-    height: 100%;
-    background-image: url('../../../assests/Images/OurMission.jpg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    z-index: 0;
-    background-attachment: fixed;
-  }
-
-  .our-mission .container .row .col-lg-6 {
-    float: right;
-  }
+/* Spinner Styles */
+.spinner-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Full viewport height, adjust as needed */
 }
 
-.our-mission {
-  position: relative;
-  overflow: hidden;
+.spinner {
+  border: 20px solid #EDCD1F;
+  border-left: 20px solid #00365E;
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+  animation: spin 1s linear infinite;
+  background-color: silver;
 }
 
-.our-mission .container {
-  position: relative;
-  z-index: 1;
+/* Keyframes for spinning animation */
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
-
-.ourMissionLine {
-  width: 200px;
-  height: 10px;
-  background: #EDCD1F;
-}
-@media screen and (min-width: 992px) {
-    .our-mission::after {
-      content: "";
-      position: absolute;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      width: 50%;
-      height: 100%;
-      background-image: url('../../../assests/Images/OurMission.jpg');
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      z-index: 0;
-      background-attachment: fixed;
-    }
-  
-    .our-mission .container .row .col-lg-6 {
-      float: right;
-    }
-  }
-  
-  .our-mission {
-    position: relative;
-    overflow: hidden;
-  }
-  
-  .our-mission .container {
-    position: relative;
-    z-index: 1;
-  }
-  
-  .ourMissionLine {
-    width: 200px;
-    height: 10px;
-    background: #EDCD1F;
-  }
-  

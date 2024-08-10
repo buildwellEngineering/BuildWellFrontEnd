@@ -2,19 +2,95 @@ import React, { useState } from 'react';
 import './styles/ContactUs.css';
 import axios from 'axios';
 
+// Utility function to sanitize input
+const sanitizeInput = (input) => {
+  // Trim whitespace from both ends
+  let sanitized = input.trim();
+  
+  // Basic encoding to prevent HTML injection (XSS)
+  sanitized = sanitized.replace(/&/g, "&amp;")
+                       .replace(/</g, "&lt;")
+                       .replace(/>/g, "&gt;")
+                       .replace(/"/g, "&quot;")
+                       .replace(/'/g, "&#x27;")
+                       .replace(/\//g, "&#x2F;");
+  
+  return sanitized;
+};
+
+// Utility function to validate email
+const isValidEmail = (email) => {
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return emailRegex.test(email);
+};
+
 export default function ContactUs() {
   const [data, setData] = useState({});
+  const [errors, setErrors] = useState({});
+
 
   const changeHandler = (e) => {
     setData({ ...data, [e.target.name]: e.target.value });
   };
 
+  const validateForm = () => {
+    const formErrors = {};
+    if (!data.firstName || data.firstName.trim() === "") {
+      formErrors.firstName = "First name is required.";
+    }
+    if (!data.lastName || data.lastName.trim() === "") {
+      formErrors.lastName = "Last name is required.";
+    }
+    if (!data.email || !isValidEmail(data.email)) {
+      formErrors.email = "Valid email is required.";
+    }
+    if (!data.subject || data.subject.trim() === "") {
+      formErrors.subject = "Subject is required.";
+    }
+    if (!data.message || data.message.trim() === "") {
+      formErrors.message = "Message is required.";
+    }
+    return formErrors;
+  };
+
   const submitHandler = async (event) => {
     event.preventDefault();
+
+    // Validate the form before submitting
+    const formErrors = validateForm();
+    if (Object.keys(formErrors).length > 0) {
+      setErrors(formErrors);
+      return;
+    }
+
+    // Sanitize all form fields before submission
+    const sanitizedData = {
+      firstName: sanitizeInput(data.firstName || ''),
+      lastName: sanitizeInput(data.lastName || ''),
+      email: sanitizeInput(data.email || ''),
+      subject: sanitizeInput(data.subject || ''),
+      message: sanitizeInput(data.message || ''),
+    };
+
+    console.log(sanitizeInput(data.message))
+
     try {
-      // const response = await axios.post('http://localhost:7777/messages/form/submit', { data });
-      const response = await axios.post('https://buildwell-engineering.vercel.app/messages/form/submit', { data });
-      console.log("Form data submitted successfully:", response.data);
+      const response = await axios.post('http://localhost:7777/messages/form/submit', { data:sanitizedData });
+      // const response = await axios.post('https://buildwell-engineering.vercel.app/messages/form/submit', { data });
+      // console.log("Form data submitted successfully:", response.data);
+      alert('Message sent successfully !!!')
+      setData({
+        firstName: '',
+        lastName: '',
+        email: '',
+        subject: '',
+        message: '',
+      });
+
+      // Scroll to the top of the page after the alert is closed
+    setTimeout(() => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }, 0);
     } catch (error) {
       console.error("Error submitting form:", error);
     }
@@ -68,29 +144,34 @@ export default function ContactUs() {
         <div className="row d-flex justify-content-center">
           <div className="col-12 col-lg-5 contact-left">
             <h2 className="py-2" style={{ color: '#00365E' }}>Inquiries</h2>
-            <p className="py-2" style={{ fontWeight: 'lighter', fontSize: '1.2rem' }}>
+            <p className="py-2" style={{ fontWeight: 'light', fontSize: '1.2rem' }}>
               For any inquiries, questions or commendations, please call: 123-456-7890 or fill out the following form
             </p>
             <form onSubmit={submitHandler}>
               <div>
                 <label>First Name</label>
                 <input type="text" name="firstName" value={data.firstName} onChange={changeHandler} required />
+                {errors.firstName && <p className="error">{errors.firstName}</p>}
               </div>
               <div>
                 <label>Last Name</label>
                 <input type="text" name="lastName" value={data.lastName} onChange={changeHandler} required />
+                {errors.lastName && <p className="error">{errors.lastName}</p>}
               </div>
               <div>
                 <label>Email</label>
                 <input type="email" name="email" value={data.email} onChange={changeHandler} required />
+                {errors.email && <p className="error">{errors.email}</p>}
               </div>
               <div>
                 <label>Subject</label>
                 <input type="text" name="subject" value={data.subject} onChange={changeHandler} required />
+                {errors.subject && <p className="error">{errors.subject}</p>}
               </div>
               <div>
                 <label>Message</label>
                 <textarea name="message" value={data.message} onChange={changeHandler} required ></textarea>
+                {errors.message && <p className="error">{errors.message}</p>}
               </div>
               <div className='grid'>
                 <input className='' type="submit" name="submit" value="Submit" />
@@ -101,11 +182,11 @@ export default function ContactUs() {
           <div className="col-12 col-lg-5 contact-right">
             <div className="address">
               <h2 className="py-2" style={{ color: '#00365E' }}>Head Office</h2>
-              <p className="py-2" style={{ fontWeight: 'lighter', fontSize: '1.2rem' }}>
+              <p className="py-2" style={{ fontWeight: 'light', fontSize: '1.2rem' }}>
                 322 Arenja Corner, plot no. 73 <br />
                 SEC-17 VASHI, NAVI-MUMBAI
               </p>
-              <p className="py-2" style={{ fontWeight: 'lighter', fontSize: '1.2rem' }}>
+              <p className="py-2" style={{ fontWeight: 'light', fontSize: '1.2rem' }}>
                 info@mysite.com <br />
                 Tel: 123-456-7890 <br />
                 Fax: 123-456-7890

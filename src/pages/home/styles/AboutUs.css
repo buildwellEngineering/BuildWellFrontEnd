@@ -1,61 +1,23 @@
-.about-us {
-  position: relative;
-  overflow: hidden;
-  background: #eef0f2;
+/* Spinner Styles */
+.spinner-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Full viewport height, adjust as needed */
 }
 
-.about-us .container {
-  position: relative;
-  z-index: 1;
+.spinner {
+  border: 20px solid #EDCD1F;
+  border-left: 20px solid #00365E;
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+  animation: spin 1s linear infinite;
+  background-color: silver;
 }
 
-.about-us .aboutUsLine {
-  width: 200px;
-  height: 10px;
-  background: #EDCD1F;
-}
-
-.about-us-title {
-  color: #00365E;
-  margin-bottom: 0; /* Ensure the heading and line are close together */
-}
-
-@media screen and (min-width: 992px) {
-  .about-us::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    width: 50%;
-    height: 100%;
-    background-image: url('../../../assests/Images/AboutUs1.jpg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    z-index: 0;
-    background-attachment: fixed;
-  }
-
-  .about-us .container .row .col-lg-6 {
-    float: right;
-  }
-}
-
-@media screen and (max-width: 992px) {
-  /* .about-us h1,
-  .about-us p {
-    padding-left: 25px;
-    padding-right: 25px;
-  } */
-}
-
-@media screen and (max-width: 576px) {
-  .about-us h1 {
-    font-size: 2.5rem;
-  }
-
-  .about-us .aboutUsLine {
-    width: 130px;
-  }
+/* Keyframes for spinning animation */
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }

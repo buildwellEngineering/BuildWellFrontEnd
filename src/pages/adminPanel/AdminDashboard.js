@@ -7,11 +7,9 @@ import Account from './Account';
 import { Routes, Route, Link, useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
-// import logo from '../../assests/Images/logo1.png';
 import './styles/AdminDashboard.css';
 import logo123 from '../../assests/Images/download.png';
 import { useSelector } from 'react-redux';
-// import { login } from '../../store/Slices/LoginStatusSlice';
 
 export default function AdminDashboard() {
   const navigate = useNavigate();
@@ -59,6 +57,11 @@ export default function AdminDashboard() {
               <li className='border-bottom border-black py-1'>
                   <Link to='/adminPanel/account' className='text-decoration-none' style={{color:'#00365E',fontSize:'30px',fontFamily:'Georgia'}}>
                     Account
+                  </Link>
+              </li>
+              <li className='border-bottom border-black py-1'>
+                  <Link to='/' className='text-decoration-none' style={{color:'#00365E',fontSize:'30px',fontFamily:'Georgia'}}>
+                    Home Page
                   </Link>
               </li>
             </ul>

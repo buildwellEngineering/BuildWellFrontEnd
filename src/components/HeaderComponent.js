@@ -2,6 +2,7 @@ import React from 'react';
 import header_down_arrow from '../assests/Images/header_down_arrow.png';
 import './styles/HeaderComponent.css';
 // import ac from '../assests/Videos/header_bg_vid_1.mp4'
+import monView1 from '../assests/Images/HomePage/mobView1.jpg'
 
 export default function HeaderComponent(props) {
 
@@ -40,7 +41,7 @@ export default function HeaderComponent(props) {
           )
         )}
           <div className="header-image d-sm-none">
-            <img src={mediaImage} className="img-fluid p-0 m-0" alt="Our Mission" />
+            <img src={monView1} className="img-fluid p-0 m-0" alt="Our Mission/Photo by 500photos.com: https://www.pexels.com/photo/tower-crane-during-daytime-93400/" />
           </div>
         </div>
         <div className="header-content container px-sm-2 px-md-3 d-flex justify-content-center align-items-md-center flex-column">
