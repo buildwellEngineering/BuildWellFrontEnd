@@ -54,8 +54,8 @@ export default function AboutUs() {
   useEffect(() => {
     const fetchAboutUsData = async () => {
       try {
-        const response = await axios.get('http://localhost:7777/homePage/getData/aboutUs');
-        // const response = await axios.get('https://buildwell-engineering.vercel.app/homePage/getData/aboutUs');
+        // const response = await axios.get('http://localhost:7777/homePage/getData/aboutUs');
+        const response = await axios.get('https://buildwell-engineering.vercel.app/homePage/getData/aboutUs');
         dispatch(setSectionData({ sectionName: 'aboutUs', data: response.data }));
         setLoading(false);
       } catch (error) {
