@@ -3,7 +3,6 @@
 
 
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
 import './styles/Projects.css'
 import useAxiosInstance from '../../axiosInstance/AxiosInstance';
 
@@ -195,9 +194,9 @@ const Projects = () => {
       formData.append('_id', selectedProject._id);
       formData.append('imageUpdated', newImage ? 'true' : 'false'); //if image is updated this is set as true else false
 
-      for (const [key, value] of formData.entries()) {
-        console.log(`${key}: ${value}`);
-      }
+      // for (const [key, value] of formData.entries()) {
+      //   console.log(`${key}: ${value}`);
+      // }
 
       //const response = await axios.put(`http://localhost:7777/projects/update`, formData);
       // const response = await axios.put(`https://buildwell-engineering.vercel.app/projects/update`, formData,{
@@ -211,6 +210,8 @@ const Projects = () => {
         // const {data} = await axios.get('https://buildwell-engineering.vercel.app/projects/getProjects',{withCredentials:true} );
         const {data} = await axiosInstance.get('/projects/getProjects');
         setProjects(data);
+        
+        setSelectedProject(false);
 
       } else {
         throw new Error('Failed to update project.');
@@ -232,7 +233,7 @@ const Projects = () => {
                 {projects && projects.length > 0 ? (
                   projects.map((project) => (
                     <>
-                      <div key={project.projectTitle} className="card m-2 p-2 col-md-5 col-lg-4 col-12 projectsCard" style={{ overflowY: 'auto' }}>
+                      <div key={project.projectTitle} className="card m-2 p-2 col-md-5 col-lg-4 col-12 projectsCard" style={{ overflowY: 'auto', border: '2px solid #00365E' }}>
                         <img
                           src={project.projectMediaUrl}
                           loading="lazy"
@@ -262,18 +263,18 @@ const Projects = () => {
               <hr className='py-2' />
 
               <div className='row py-4'>
-                <div className="col-12 col-lg-8 mx-auto d-flex flex-column justify-content-center align-items-start" style={{ overflowY: 'auto' }}>
+                <div className="col-12 col-lg-8 mx-auto d-flex flex-column justify-content-center align-items-start" style={{ overflowY: 'auto', color:'#00365E' }}>
                   {newProject.projectMediaUrl ? (
                     <img src={URL.createObjectURL(newProject.projectMediaUrl)} alt={newProject.projectTitle} className="img-fluid" />
                   ) : (
-                    <div className="d-flex justify-content-center align-items-center" style={{ width: '100%', height: '200px', border: '1px solid #ccc', borderRadius: '4px', background: '#f8f9fa' }}>
+                    <div className="d-flex justify-content-center align-items-center" style={{ width: '100%', height: '200px', border: '2px solid #00365E', borderRadius: '4px', background: '#f8f9fa' ,color:'#00365E' }}>
                       <p className="text-muted">No image selected</p>
                     </div>
                   )}
                   <h2>{newProject.projectTitle}</h2>
                   <p className="description-text">{newProject.projectDescription}</p>
                 </div>
-                <div className="col-12 col-lg-8 mx-auto">
+                <div className="col-12 col-lg-8 mx-auto" style={{ color:'#00365E'}}>
                   <div>
                     <label>Title: </label>
                     <input
@@ -282,7 +283,7 @@ const Projects = () => {
                       value={newProject.projectTitle}
                       onChange={handleNewTitleChange}
                       className='p-2 form-control'
-                      style={{ height: 'auto', fontSize: '0.8rem', width: '100%' }}
+                      style={{ height: 'auto', fontSize: '0.8rem', width: '100%',border: '2px solid #00365E' }}
                     />
                   </div>
                   <div>
@@ -292,7 +293,7 @@ const Projects = () => {
                       id="imageInput"
                       accept="image/*"
                       className='p-2 form-control'
-                      style={{ height: 'auto', fontSize: '0.8rem' }}
+                      style={{ height: 'auto', fontSize: '0.8rem', border: '2px solid #00365E' }}
                       onChange={handleNewImageChange}
                     />
                   </div>
@@ -303,18 +304,18 @@ const Projects = () => {
                       value={newProject.projectDescription}
                       onChange={handleNewDescriptionChange}
                       className="p-2 form-control"
-                      style={{ height: 'auto', fontSize: '0.8rem', width: '100%' }}
+                      style={{ height: 'auto', fontSize: '0.8rem', width: '100%', border: '2px solid #00365E' }}
                     />
                   </div>
-                  <button type="button" className="px-5 reset-btn" onClick={handleNewReset}>
+                  <br />
+                  <div className='d-flex justify-content-end align-items-center mb-5'>
+                  <button type="button" className="px-5 reset-btn" onClick={handleNewReset} style={{backgroundColor:'#00365E', color:'#EDCD1F'}}>
                     Reset
                   </button>
-                  <button type="button" className="px-5 submit-btn mx-2" onClick={handleNewSubmit}>
+                  <button type="button" className="px-5 submit-btn mx-2" onClick={handleNewSubmit} style={{backgroundColor:'#00365E', color:'#EDCD1F'}}>
                     Submit
                   </button>
-                  <button type="button" className="px-5 submit-btn mx-2" onClick={handleNewSubmit}>
-                    Submit
-                  </button>
+                  </div>
                 </div>
               </div>
             </div>

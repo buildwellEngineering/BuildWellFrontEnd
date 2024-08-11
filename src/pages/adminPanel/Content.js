@@ -6,7 +6,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import { setSectionData } from '../../store/slices/SectionsSLice';
 import axios from 'axios';
 import useAxiosInstance from '../../axiosInstance/AxiosInstance.js'
-// import { useNavigate } from 'react-router-dom';
 
 export default function Content() {
 
@@ -422,11 +421,15 @@ export default function Content() {
 
   return (
     <div className='p-4'>
-      <h1>Content</h1>
-      <p>Content goes here...</p>
+      <div className='d-flex jutsify-content-center flex-column align-items-center my-4'>
+      <h1 className='' style={{ color:'#00365E', fontSize:'3rem'}}>CONTENT</h1>
+      <div className='' style={{backgroundColor:'#EDCD1F', height:'10px' , width:'150px'}} ></div>
+      </div>
+
+      <br />
 
       <>
-        <div style={{ height: '500px !important' }}>
+        <div style={{ height: '500px !important' }} className='my-2'>
           <AboutUsComponent media={mediaPreviewAboutUS} text={aboutUs.sectionText} />
         </div>
         <div>
@@ -439,15 +442,17 @@ export default function Content() {
               <label>Image: </label>
               <input type='file' name='sectionMediaUrl' onChange={changeAboutUs} className='p-2' style={{ height: 'auto' }} />
             </div>
-            <div>
+            <div className='my-2'>
               <input type='submit' name='submit' value='Submit' />
             </div>
           </form>
         </div>
       </>
 
+      <br />
+
       <>
-        <div style={{ height: '500px !important' }}>
+        <div style={{ height: '500px !important' }} className='my-2'>
           <OurMissionComponent media={mediaPreviewOurMissionOurtechnologies} ourMissionPara={ourMissionOurTechnologies.sectionText1} ourTechnologiesPara={ourMissionOurTechnologies.sectionText2} />
         </div>
         <div>
@@ -464,16 +469,17 @@ export default function Content() {
               <label>Image: </label>
               <input type='file' name='sectionMediaUrl' onChange={changeOurMissionOurTechnologies} className='p-2' style={{ height: 'auto' }} />
             </div>
-            <div>
+            <div className='my-2'>
               <input type='submit' name='submit' value='Submit' />
             </div>
           </form>
         </div>
       </>
 
+      <br />
+
       <>
-        <div style={{ height: '500px !important' }}>
-          {/* <HeaderComponent mediaVideo={header.sectionMediaUrl[0]} mediaImage={header.sectionMediaUrl[1]} text1={header.sectionText.split(';')[0]} text2={header.sectionText.split(';')[1]} text3={header.sectionText.split(';')[2]} /> */}
+        <div style={{ height: '500px !important' }} className='my-2'>
           <HeaderComponent mediaVideo={header.sectionMediaUrl[0]} mediaImage={mediaPreviewHeader1} text1={header.sectionText.split(';')[0]} text2={header.sectionText.split(';')[1]} text3={header.sectionText.split(';')[2]} />
         </div>
         <div>
@@ -498,12 +504,14 @@ export default function Content() {
               <label>Image: </label>
               <input type='file' name='imageFile' onChange={changeHeader} className='p-2' style={{ height: 'auto' }} />
             </div>
-            <div>
+            <div className='my-2'>
               <input type='submit' value='submit' name='submit' />
             </div>
           </form>
         </div>
         </>
+
+        <br />
 
       <>
       <div className="admin-panel my-5">
@@ -518,11 +526,13 @@ export default function Content() {
                                 <h4 className="fw-bold" style={{ textAlign: 'center', color: '#00365E', opacity: 0.8 }}>
                                     {achievement.name}
                                 </h4>
-                                <button className="admin-btn" onClick={() => {
+                                <div className='d-flex justify-content-center align-items-center flex-column'>
+                                <button className="admin-btn m-2" onClick={() => {
                                     setNewAchievement({ name: achievement.name, value: achievement.value });
                                     setEditingId(achievement._id);
-                                }}>Edit</button>
-                                <button className="admin-btn" onClick={() => handleDelete(achievement._id)}>Delete</button>
+                                }} style={{width:'200px'}}>Edit</button>
+                                <button className="admin-btn m-2" onClick={() => handleDelete(achievement._id)} style={{width:'200px'}}>Delete</button>
+                                 </div> 
                             </div>
                         ))}
                     </div>
@@ -536,17 +546,21 @@ export default function Content() {
                         placeholder="Achievement Name"
                         value={newAchievement.name}
                         onChange={(e) => setNewAchievement({ ...newAchievement, name: e.target.value })}
+                        className='my-2'
                     />
                     <input
                         type="number"
                         placeholder="Achievement Value"
                         value={newAchievement.value}
                         onChange={(e) => setNewAchievement({ ...newAchievement, value: e.target.value })}
+                        className='my-2'
                     />
-                    <button className="admin-btn" onClick={handleAddOrUpdate}>
+                    <div className='d-flex justify-content-end align-items-center my-2'>
+                    <button className="admin-btn mx-2 p-2" onClick={handleAddOrUpdate}>
                         {editingId ? 'Update Achievement' : 'Add Achievement'}
                     </button>
-                    {editingId && <button className="admin-btn" onClick={resetForm}>Cancel</button>}
+                    {editingId && <button className="admin-btn mx-2 p-2" onClick={resetForm}>Cancel</button>}
+                    </div>
                 </div>
             </section>
         </div>

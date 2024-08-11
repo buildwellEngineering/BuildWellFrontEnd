@@ -13,7 +13,7 @@
     width: 100px;
     height: 100px;
     animation: spin 1s linear infinite;
-    background-color: silver;
+    background-color: black;
 }
 
 /* Keyframes for spinning animation */
