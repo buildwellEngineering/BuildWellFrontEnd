@@ -16,8 +16,7 @@
 
 .admin-panel-container {
   min-height: 100vh;
-  display: flex; /* Allow content to fill vertically */
-  /*background-image: url('../../../assests/Images/adminLogin.jpg'); /* Assuming image is in 'public' folder */
+  display: flex; 
   background-size: cover; /* Stretch image to fill container */
   background-position: center; /* Center image horizontally and vertically */
   background-repeat: no-repeat; /* Prevent image tiling */
@@ -29,7 +28,6 @@
 }
 
 .image-section {
-  /* background-image: url('https://via.placeholder.com/600x400'); */
   background-size: cover;
   background-position: center;
 }

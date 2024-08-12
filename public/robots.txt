@@ -1,3 +1,10 @@
 # https://www.robotstxt.org/robotstxt.html
+
+# Allow all search engines access to all content except specified paths
 User-agent: *
-Disallow:
+Disallow: /admin/
+Disallow: /adminLogin/
+Disallow: /adminPanel/
+
+# Specify the location of your XML sitemap
+Sitemap: https://your-domain.com/sitemap.xml

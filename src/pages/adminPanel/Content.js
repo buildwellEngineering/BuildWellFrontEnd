@@ -28,10 +28,6 @@ export default function Content() {
     axiosInstance.get('/homePage/getData/counter')
         .then(response => setAchievements(response.data))
         .catch(error => console.error('Error fetching achievements:', error));
-    
-    // axios.get('http://localhost:7777/homePage/getData/counter',{withCredentials:true})
-    //     .then(response => setAchievements(response.data))
-    //     .catch(error => console.error('Error fetching achievements:', error));
 }, []);
 
   const handleAddOrUpdate = () => {
@@ -45,14 +41,6 @@ export default function Content() {
           resetForm();
         })
         .catch(error => console.error('Error updating achievement:', error));
-        // axios.put(`http://localhost:7777/update/counterUpdate/${editingId}`, newAchievement,{withCredentials:true})
-        //     .then(response => {
-        //         setAchievements(achievements.map(achievement =>
-        //             achievement._id === editingId ? response.data : achievement
-        //         ));
-        //         resetForm();
-        //     })
-        //     .catch(error => console.error('Error updating achievement:', error));
     } else {
         // Add new achievement
         axiosInstance.post('/update/counterAdd', newAchievement)
@@ -61,22 +49,13 @@ export default function Content() {
                 resetForm();
             })
             .catch(error => console.error('Error adding achievement:', error));
-        // axios.post('http://localhost:7777/update/counterAdd', newAchievement,{withCredentials:true})
-        //     .then(response => {
-        //         setAchievements([...achievements, response.data]);
-        //         resetForm();
-        //     })
-        //     .catch(error => console.error('Error adding achievement:', error));
     }
   };
 
   const handleDelete = (id) => {
-    axiosInstance.delete(`http://localhost:7777/update/counterDelete/${id}`)
+    axiosInstance.delete(`${process.env.REACT_APP_BASE_API_URL}/update/counterDelete/${id}`)
         .then(() => setAchievements(achievements.filter(achievement => achievement._id !== id)))
         .catch(error => console.error('Error deleting achievement:', error));
-    // axios.delete(`http://localhost:7777/update/counterDelete/${id}`,{withCredentials:true})
-    //     .then(() => setAchievements(achievements.filter(achievement => achievement._id !== id)))
-    //     .catch(error => console.error('Error deleting achievement:', error));
   };
 
   const resetForm = () => {
@@ -107,9 +86,7 @@ export default function Content() {
   useEffect(() => {
     const fetchDataAboutUs = async () => {
       try {
-        // const response = await axios.get('http://localhost:7777/homePage/getData/aboutUs');
         const response = await axiosInstance.get('/homePage/getData/aboutUs');
-        // const response = await axios.get('https://buildwell-engineering.vercel.app/homePage/getData/aboutUs');
         const record = response.data;
         dispatch(setSectionData({ sectionName: 'aboutUs', data: record }));
       } catch (error) {
@@ -129,8 +106,7 @@ export default function Content() {
 
     const fetchDataOurMissionOurTechnologies = async () => {
       try {
-        //const response = await axios.get('http://localhost:7777/homePage/getData/ourMissionOurTechnologies');
-        const response = await axios.get('https://buildwell-engineering.vercel.app/homePage/getData/ourMissionOurTechnologies');
+        const response = await axios.get(`${process.env.REACT_APP_BASE_API_URL}/homePage/getData/ourMissionOurTechnologies`);
         const record = response.data;
         dispatch(setSectionData({ sectionName: 'ourMissionOurTechnologies', data: record }));
       } catch (error) {
@@ -151,8 +127,7 @@ export default function Content() {
 
     const fetchDataHeader = async () => {
       try {
-        //const response = await axios.get('http://localhost:7777/homePage/getData/header');
-        const response = await axios.get('https://buildwell-engineering.vercel.app/homePage/getData/header');
+        const response = await axios.get(`${process.env.REACT_APP_BASE_API_URL}/homePage/getData/header`);
         const record = response.data;
         dispatch(setSectionData({ sectionName: 'header', data: record }));
       } catch (error) {
@@ -172,21 +147,6 @@ export default function Content() {
   }, []); //aboutUsData, ourMissionOurTechnologiesData, headerData, dispatch
 
   const changeAboutUs = (e) => {
-    // const { name, value, type, files } = e.target;
-    // if (type === 'file') {
-    //   // const file = files[0];
-    //   // const reader = new FileReader();
-    //   // reader.readAsDataURL(file);
-    //   // reader.onloadend = () => {
-    //   //   setAboutUs({ ...aboutUs, [name]: reader.result });
-    //   //   setAboutusImageChange(true);
-    //   // };
-    //   setAboutUs({...aboutUs,[name]:files[0]})
-    //   setAboutusImageChange(true);
-    // } else {
-    //   setAboutUs({ ...aboutUs, [name]: value });
-    // }
-
     const { name, value, type, files } = e.target;
     if (type === 'file') {
       if (files && files.length > 0) {
@@ -207,12 +167,6 @@ export default function Content() {
   const changeOurMissionOurTechnologies = (e) => {
     const { name, value, type, files } = e.target;
     if (type === 'file') {
-      // const file = files[0];
-      // const reader = new FileReader();
-      // reader.readAsDataURL(file);
-      // reader.onloadend = () => {
-      //   setOurMissionOurTechnologies({ ...ourMissionOurTechnologies, [name]: reader.result });
-      // };
      if(files && files.length > 0){
       setOurMissionOurTechnologies({...ourMissionOurTechnologies, [name]: files[0]})
       setOurMissionOurTechnologiesImageChange(true);
@@ -226,25 +180,6 @@ export default function Content() {
   };
 
   const changeHeader = (e) => {
-    // const { name, type } = e.target;
-    // if (type === 'file') {
-    //   const file = e.target.files[0];
-    //   const reader = new FileReader();
-    //   reader.readAsDataURL(file);
-    //   reader.onloadend = () => {
-    //     // Check if the input is for video or image
-    //     if (name === 'videoFile') {
-    //       // Update video file
-    //       setHeader({ ...header, sectionMedia: [reader.result, header.sectionMedia[1]] });
-    //     } else if (name === 'imageFile') {
-    //       // Update image file
-    //       setHeader({ ...header, sectionMedia: [header.sectionMedia[0], reader.result] });
-    //     }
-    //   };
-    // } else {
-    //   // Handle text inputs
-    //   setHeader({ ...header, [name]: e.target.value });
-    // }
     const { name, value, type, files } = e.target;
     if (type === 'file') {
      if(files && files.length > 0){
@@ -269,25 +204,6 @@ export default function Content() {
   };
 
   const handleSubmitAboutUs = async (e) => {
-    // e.preventDefault();
-
-    // try {
-    //   const response = await axios.put('http://localhost:7777/update/aboutUs', {
-    //     sectionName: 'aboutUs',
-    //     data: { sectionText: aboutUs.sectionText, sectionMediaUrl: aboutUs.sectionMediaUrl, imageChange: aboutusImageChange ? 'true' : 'false' }
-    //   });
-
-    //   if (response.status >= 200 && response.status < 300) {
-    //     dispatch(setSectionData({ sectionName: 'aboutUs', data: { sectionText: aboutUs.sectionText, sectionMediaUrl: aboutUs.sectionMediaUrl } }));
-    //     console.log('Data updated successfully on the server');
-    //   } else {
-    //     throw new Error('Failed to update data on the server');
-    //   }
-    // } catch (error) {
-    //   console.error('Error updating data:', error);
-    // }
-
-
     e.preventDefault();
 
     const formData = new FormData();
@@ -300,13 +216,9 @@ export default function Content() {
     }
 
     try {
-      //const response = await axios.put('http://localhost:7777/update/aboutUs', formData);
-      // const response = await axios.put('https://buildwell-engineering.vercel.app/update/aboutUs',formData,{withCredentials:true});
       const response = await axiosInstance.put('/update/aboutUs',formData);
 
       if (response.status >= 200 && response.status < 300) {
-        // dispatch(setSectionData({ sectionName: 'aboutUs', data: { sectionText: aboutUs.sectionText, sectionMediaUrl: aboutUs.sectionMediaUrl } }));
-        console.log('Data updated successfully on the server');
       } else {
         throw new Error('Failed to update data on the server');
       }
@@ -317,22 +229,6 @@ export default function Content() {
 
   const handleSubmitOurMission = async (e) => {
     e.preventDefault();
-
-    // try {
-    //   const response = await axios.put('http://localhost:7777/update/ourMissionOurTechnologies', {
-    //     sectionName: 'ourMissionOurTechnologies',
-    //     data: { sectionText1: ourMissionOurTechnologies.sectionText1, sectionText2: ourMissionOurTechnologies.sectionText2, sectionMedia: ourMissionOurTechnologies.sectionMedia }
-    //   });
-
-    //   if (response.status >= 200 && response.status < 300) {
-    //     dispatch(setSectionData({ sectionName: 'ourMissionOurTechnologies', data: { sectionText1: ourMissionOurTechnologies.sectionText1, sectionText2: ourMissionOurTechnologies.sectionText2, sectionMedia: ourMissionOurTechnologies.sectionMedia } }));
-    //     console.log('Data updated successfully on the server');
-    //   } else {
-    //     throw new Error('Failed to update data on the server');
-    //   }
-    // } catch (error) {
-    //   console.error('Error updating data:', error);
-    // }
 
     const formData = new FormData();
     formData.append('sectionName', 'ourMissionOurTechnologies');
@@ -345,13 +241,9 @@ export default function Content() {
     }
 
     try {
-      //console.log(ourMissionOurTechnologies,ourMissionOurTechnologiesImageChange.toString(),ourMissionOurTechnologies.sectionText1,ourMissionOurTechnologies.sectionText2)
-      //const response = await axios.put('http://localhost:7777/update/ourMissionOurTechnologies', formData);
-      // const response = await axios.put('https://buildwell-engineering.vercel.app/update/ourMissionOurTechnologies', formData,{withCredentials:true});
       const response = await axiosInstance.put('/update/ourMissionOurTechnologies', formData);
 
       if (response.status >= 200 && response.status < 300) {
-        // dispatch(setSectionData({ sectionName: 'aboutUs', data: { sectionText: aboutUs.sectionText, sectionMediaUrl: aboutUs.sectionMediaUrl } }));
       } else {
         throw new Error('Failed to update data on the server');
       }
@@ -362,24 +254,6 @@ export default function Content() {
   };
 
   const handleSubmitHeader = async (e) => {
-    // e.preventDefault();
-
-    // try {
-    //   const response = await axios.put('http://localhost:7777/update/header', {
-    //     sectionName: 'header',
-    //     data: { sectionText: header.sectionText, sectionMedia: header.sectionMedia }
-    //   });
-
-    //   if (response.status >= 200 && response.status < 300) {
-    //     dispatch(setSectionData({ sectionName: 'header', data: { sectionText: header.sectionText, sectionMedia: header.sectionMedia } }));
-    //     console.log('Data updated successfully on the server');
-    //   } else {
-    //     throw new Error('Failed to update data on the server');
-    //   }
-    // } catch (error) {
-    //   console.error('Error updating data:', error);
-    // }
-
     e.preventDefault();
 
     const formData = new FormData();
@@ -396,13 +270,10 @@ export default function Content() {
     }
 
     try {
-      //const response = await axios.put('http://localhost:7777/update/header', formData);
-      // const response = await axios.put('https://buildwell-engineering.vercel.app/update/header', formData,{withCredentials:true});
       const response = await axiosInstance.put('/update/header', formData);
 
 
       if (response.status >= 200 && response.status < 300) {
-        // dispatch(setSectionData({ sectionName: 'aboutUs', data: { sectionText: aboutUs.sectionText, sectionMediaUrl: aboutUs.sectionMediaUrl } }));
         setHeaderImageChange1(false)
         setHeaderVideoChange0(false)
       } else {
@@ -416,7 +287,6 @@ export default function Content() {
 
   const mediaPreviewAboutUS = aboutusImageChange ? URL.createObjectURL(aboutUs.sectionMediaUrl) : aboutUs.sectionMediaUrl;
   const mediaPreviewOurMissionOurtechnologies = ourMissionOurTechnologiesImageChange ? URL.createObjectURL(ourMissionOurTechnologies.sectionMediaUrl) : ourMissionOurTechnologies.sectionMediaUrl;
-  //const mediaPreviewHeader0 = headerVideoChange0 ? URL.createObjectURL(header.sectionMediaUrl[0]) : header.sectionMediaUrl[0];
   const mediaPreviewHeader1 = headerImageChange1 ? URL.createObjectURL(header.sectionMediaUrl[1]) : header.sectionMediaUrl[1];
 
   return (

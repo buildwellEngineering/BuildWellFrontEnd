@@ -1,9 +1,4 @@
-
-
-
-
 import React, { useState } from 'react';
-import axios from 'axios';
 import useAxiosInstance from '../../axiosInstance/AxiosInstance';
 
 const Account = () => {
@@ -18,12 +13,6 @@ const Account = () => {
     const handleChangePassword = async (e) => {
         e.preventDefault();
         try {
-            // const response = await axios.post('http://localhost:7777/adminLogin/changePassword', {
-            //     currentEmail,
-            //     currentPassword,
-            //     newPassword
-            // }, { withCredentials: true });
-
             const response = await axiosInstance.post('/adminLogin/changePassword', {
                 currentEmail,
                 currentPassword,

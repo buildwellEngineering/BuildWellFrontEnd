@@ -4,8 +4,18 @@ import React, { useEffect, useState } from 'react';
 import './styles/Projects.css';
 import { useNavigate, Link } from 'react-router-dom';
 import axios from 'axios';
+import { Helmet } from 'react-helmet';
 
 export default function Projects() {
+
+  const schemaMarkup = {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "url": "https://buildwellengineering.com",
+    "name": "Our Projects - BuildWell Construction",
+    "description": "Explore the diverse range of residential, commercial, institutional, and industrial projects completed by BuildWell Construction."
+  }
+  
   const navigate = useNavigate();
   const [projects, setProjects] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -16,14 +26,13 @@ export default function Projects() {
 
   const fetchHomePageProjects = async () => {
     try {
-      // const response = await axios.get('http://localhost:7777/homePage/getData/projects');
-      const response = await axios.get('https://buildwell-engineering.vercel.app/homePage/getData/projects');
+      const response = await axios.get(`${process.env.REACT_APP_BASE_API_URL}/homePage/getData/projects`);
 
       setProjects(response.data);
       setLoading(false);
     } catch (error) {
       console.log("error", error);
-      setLoading(false); // Stop loading in case of error
+      setLoading(false);
     }
   };
 
@@ -34,6 +43,9 @@ export default function Projects() {
   if (loading) {
     return (
       <div className="spinner-container">
+        <Helmet>
+        <script type="application/ld+json">{JSON.stringify(schemaMarkup)}</script>
+      </Helmet> 
         <div className="spinner"></div>
       </div>
     ); // Display the spinner while loading
@@ -41,6 +53,9 @@ export default function Projects() {
 
   return (
     <section id="Projects" className="scroll-section">
+      <Helmet>
+        <script type="application/ld+json">{JSON.stringify(schemaMarkup)}</script>
+      </Helmet>
       <div className="container">
         <div className="row d-flex justify-content-start justify-content-lg-center py-2 py-md-5 px-3">
           <h1 className="projects-title text-md-center text-start">PROJECTS</h1>

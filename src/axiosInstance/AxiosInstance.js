@@ -8,8 +8,7 @@ const useAxiosInstance = () => {
   const navigate = useNavigate();
 
   const axiosInstance = axios.create({
-    //baseURL: 'https://buildwell-engineering.vercel.app',
-    baseURL: 'http://localhost:7777', // Your API base URL 
+    baseURL: process.env.REACT_APP_BASE_API_URL, // Your API base URL 
     withCredentials: true,
   });
 

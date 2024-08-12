@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './styles/ContactUs.css';
 import axios from 'axios';
+import { Helmet } from 'react-helmet';
 
 // Utility function to sanitize input
 const sanitizeInput = (input) => {
@@ -25,6 +26,22 @@ const isValidEmail = (email) => {
 };
 
 export default function ContactUs() {
+
+  const schemaMarkup = {
+    "@context": "https://schema.org",
+    "@type": "ContactPage",
+    "url": "https://buildwellengineering.com",
+    "name": "Contact BuildWell Construction",
+    "description": "Get in touch with BuildWell Construction for any inquiries regarding our services.",
+    "mainEntity": {
+      "@type": "ContactPoint",
+      "telephone": "+91-1234567890",
+      "contactType": "Customer Service",
+      "areaServed": "IN",
+      "availableLanguage": "English"
+    }
+  }
+  
   const [data, setData] = useState({});
   const [errors, setErrors] = useState({});
 
@@ -72,12 +89,9 @@ export default function ContactUs() {
       message: sanitizeInput(data.message || ''),
     };
 
-    console.log(sanitizeInput(data.message))
 
     try {
-      const response = await axios.post('http://localhost:7777/messages/form/submit', { data:sanitizedData });
-      // const response = await axios.post('https://buildwell-engineering.vercel.app/messages/form/submit', { data });
-      // console.log("Form data submitted successfully:", response.data);
+      const response = await axios.post(`${process.env.REACT_APP_BASE_API_URL}/messages/form/submit`, { data:sanitizedData });
       alert('Message sent successfully !!!')
       setData({
         firstName: '',
@@ -98,6 +112,9 @@ export default function ContactUs() {
 
   return (
     <div id="ContactUs" className="scroll-section">
+      <Helmet>
+        <script type="application/ld+json">{JSON.stringify(schemaMarkup)}</script>
+      </Helmet>
       <div className="container text-center py-5">
         <h1 className="contact-us-title" style={{color:'#00365E',fontSize:'2.5rem'}}>CONTACT US</h1>
         <div className="contactUsLine mb-1 mx-auto"></div>

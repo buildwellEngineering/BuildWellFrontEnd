@@ -2,7 +2,6 @@
 
 import React, { useEffect } from 'react';
 import './styles/Messages.css';
-import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
 import { setMessages, deleteMessage, markMessageAsRead } from '../../store/slices/messagesSlice';
 import useAxiosInstance from '../../axiosInstance/AxiosInstance';
@@ -22,9 +21,6 @@ export default function Messages() {
   useEffect(() => {
     const fetchMessages = async () => {
       try {
-        //const response = await axios.get('http://localhost:7777/messages/get');
-        // const response = await axios.get('https://buildwell-engineering.vercel.app/messages/get',{withCredentials:true});
-        
         const response = await axiosInstance.get('/messages/get');
 
         // Sort messages by date in descending order
@@ -37,12 +33,10 @@ export default function Messages() {
     };
 
     fetchMessages();
-  }, []); // dispatch
+  }, []); 
 
   const handleMarkAsRead = async (id) => {
     try {
-      //await axios.put(`http://localhost:7777/messages/markAsRead/${id}`);
-      // await axios.put(`https://buildwell-engineering.vercel.app/messages/markAsRead/${id}`);
       await axiosInstance.put(`/messages/markAsRead/${id}`);
 
       dispatch(markMessageAsRead(id));
@@ -53,9 +47,6 @@ export default function Messages() {
 
   const handleDeleteMessage = async (id) => {
     try {
-      //await axios.delete(`http://localhost:7777/messages/delete/${id}`);
-      // await axios.delete(`https://buildwell-engineering.vercel.app/messages/delete/${id}`);
-
       await axiosInstance.delete(`/messages/delete/${id}`);
       dispatch(deleteMessage(id));
     } catch (error) {

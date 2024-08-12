@@ -13,7 +13,7 @@ export default function DisplayProjects() {
 
   const getProjects = async () => {
     try {
-      const response = await axios.get('https://buildwell-engineering.vercel.app/projects/getprojects');
+      const response = await axios.get(`${process.env.REACT_APP_BASE_API_URL}/projects/getprojects`);
       setProjects(response.data);
       setLoading(false);
     } catch (error) {

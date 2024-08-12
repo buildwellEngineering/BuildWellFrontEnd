@@ -15,7 +15,6 @@ export default function AdminDashboard() {
   const navigate = useNavigate();
 
   const loginStatus = useSelector((state)=>state.LoginStatus.isLoggedIn);
-  console.log(loginStatus)
 
   useEffect(()=>{
     if (!loginStatus) {
@@ -73,14 +72,12 @@ export default function AdminDashboard() {
       <div className='row'>
         <Routes>
           <Route path='/' element={<Analytics />} />  
-          {/* <Route path='/analytics' element={<Analytics />} /> */}
            <Route path='/messages' element={<Messages />} />
           <Route path='/content' element={<Content />} />
           <Route path='/account' element={<Account />} />
           <Route path='/projects' element={<Projects />} />
-          
         </Routes>
-        {/* <Analytics /> */}
+   
       </div>
     </div>
     </>

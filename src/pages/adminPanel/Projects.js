@@ -1,6 +1,4 @@
 
-//-------------------------------------------------------------------
-
 
 import React, { useEffect, useState } from 'react';
 import './styles/Projects.css'
@@ -12,8 +10,8 @@ const Projects = () => {
 
   const [projects, setProjects] = useState([]);
   const [resetProjects, setResetProjects] = useState([]);
-  const [selectedProject, setSelectedProject] = useState(false); // useState({}) -- earlier
-  const [newImage, setNewImage] = useState(false); //for if image updated 
+  const [selectedProject, setSelectedProject] = useState(false); 
+  const [newImage, setNewImage] = useState(false); 
   const [loading, setLoading] = useState(false);
 
 
@@ -22,9 +20,6 @@ const Projects = () => {
     setLoading(true);
 
     try {
-      //const response = await axios.get('http://localhost:7777/projects/getProjects');
-      // const response = await axios.get('https://buildwell-engineering.vercel.app/projects/getProjects',{withCredentials:true});
-
       const response = await axiosInstance.get('/projects/getProjects');
       setProjects(response.data);
       setResetProjects(response.data);
@@ -43,7 +38,7 @@ const Projects = () => {
 
   const editProject = (project) => {
     setSelectedProject(project)
-    setNewImage(false); // Reset newImage when a new project is selected for editing
+    setNewImage(false); 
   };
 
   const handleClose = () => {
@@ -83,7 +78,7 @@ const Projects = () => {
   const [newProject, setNewProject] = useState({
     projectTitle: '',
     projectDescription: '',
-    projectMediaUrl: null, // Updated state to hold image file
+    projectMediaUrl: null, 
   });
 
   const handleNewImageChange = (e) => {
@@ -111,18 +106,7 @@ const Projects = () => {
       formData.append('title', newProject.projectTitle);
       formData.append('description', newProject.projectDescription);
       formData.append('mediaUrl', newProject.projectMediaUrl);
-      console.log(newProject.projectMediaUrl)
 
-      for (const [key, value] of formData.entries()) {
-        console.log(`${key}: ${value}`);
-      }
-
-      // const response = await axios.post('https://buildwell-engineering.vercel.app/projects/add', formData, {
-      //   headers: {
-      //     'Content-Type': 'multipart/form-data',
-      //   },
-      //   withCredentials: true
-      // })
 
       const response = await axiosInstance.post('/projects/add', formData, {
         headers: {
@@ -132,9 +116,6 @@ const Projects = () => {
 
       if (response.status === 201) {
         const data = response.data;
-        console.log('New Project added:', data);
-        // Update state or perform other actions upon successful submission
-        // Reset form fields
         setNewProject({
           projectTitle: '',
           projectDescription: '',
@@ -145,30 +126,17 @@ const Projects = () => {
       }
     } catch (error) {
       console.error('Error adding new project:', error.message);
-      // Handle error state or display error message to user
     }
   };
 
 
   const handleDelete = async () => {
     try {
-      if (!selectedProject._id) {
-        console.error('No project selected for deletion.');
-        return;
-      }
-      // console.log(selectedProject._id)
-      // const response = await axios.delete(`https://buildwell-engineering.vercel.app/projects/delete`, {
-      //   data: { projectId: selectedProject._id },
-      //   withCredentials: true
-      // });
-
       const response = await axiosInstance.delete(`/projects/delete`, {
         data: { projectId: selectedProject._id }
       });
 
       if (response.status === 200) {
-        // console.log('Project deleted successfully.');
-        // Filter out the deleted project from state
         const updatedProjects = projects.filter(project => project._id !== selectedProject._id);
         setProjects(updatedProjects);
         setSelectedProject({});
@@ -182,32 +150,18 @@ const Projects = () => {
 
   const handleUpdate = async () => {
     try {
-      if (!selectedProject._id) {
-        console.error('No project selected for update.');
-        return;
-      }
-
+      
       const formData = new FormData();
       formData.append('title', selectedProject.projectTitle);
       formData.append('description', selectedProject.projectDescription);
       formData.append('mediaUrlupdate', selectedProject.projectMediaUrl);
       formData.append('_id', selectedProject._id);
-      formData.append('imageUpdated', newImage ? 'true' : 'false'); //if image is updated this is set as true else false
+      formData.append('imageUpdated', newImage ? 'true' : 'false'); 
 
-      // for (const [key, value] of formData.entries()) {
-      //   console.log(`${key}: ${value}`);
-      // }
-
-      //const response = await axios.put(`http://localhost:7777/projects/update`, formData);
-      // const response = await axios.put(`https://buildwell-engineering.vercel.app/projects/update`, formData,{
-      //   withCredentials:true
-      // });
 
       const response = await axiosInstance.put(`/projects/update`, formData);
 
       if (response.status === 200) {
-        //const { data } = await axios.get('http://localhost:7777/projects/getProjects');
-        // const {data} = await axios.get('https://buildwell-engineering.vercel.app/projects/getProjects',{withCredentials:true} );
         const {data} = await axiosInstance.get('/projects/getProjects');
         setProjects(data);
         
