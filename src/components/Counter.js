@@ -10,8 +10,17 @@ export default function Counter() {
 
     useEffect(() => {
         // Fetch achievements from the backend when the component mounts
-        axios.get(`${process.env.REACT_APP_BASE_API_URL}/homePage/getData/counter`)
-            .then(response => setAchievements(response.data))
+        axios.get(`https://buildwell-engineering.vercel.app/homePage/getData/counter`)
+            .then(response => {
+                const data = response.data;
+                // Ensure the data is an array
+                if (Array.isArray(data)) {
+                    setAchievements(data);
+                } else {
+                    console.error('Expected array but got:', data);
+                    setAchievements([]);
+                }
+            })
             .catch(error => console.error('Error fetching achievements:', error));
     }, []);
 

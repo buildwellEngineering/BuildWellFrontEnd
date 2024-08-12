@@ -53,7 +53,7 @@ export default function Content() {
   };
 
   const handleDelete = (id) => {
-    axiosInstance.delete(`${process.env.REACT_APP_BASE_API_URL}/update/counterDelete/${id}`)
+    axiosInstance.delete(`https://buildwell-engineering.vercel.app/update/counterDelete/${id}`)
         .then(() => setAchievements(achievements.filter(achievement => achievement._id !== id)))
         .catch(error => console.error('Error deleting achievement:', error));
   };

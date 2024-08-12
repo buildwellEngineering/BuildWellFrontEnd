@@ -37,7 +37,7 @@ export default function OurMission() {
   useEffect(() => {
     const fetchOurMissionOurTechnologiesData = async () => {
       try {
-        const response = await axios.get(`${process.env.REACT_APP_BASE_API_URL}/homePage/getData/ourMissionOurTechnologies`);
+        const response = await axios.get(`https://buildwell-engineering.vercel.app/homePage/getData/ourMissionOurTechnologies`);
 
         dispatch(setSectionData({ sectionName: 'ourMissionOurTechnologies', data: response.data }));
         setLoading(false);

@@ -23,8 +23,7 @@ export default function AdminLogin() {
   const handleLogin = async (event) => {
     event.preventDefault();
     try {
-      const response = await axios.post(
-        `${process.env.REACT_APP_BASE_API_URL}/adminLogin/login`, 
+      const response = await axios.post(`https://buildwell-engineering.vercel.app/adminLogin/login`, 
         data
       );
 
@@ -42,7 +41,7 @@ export default function AdminLogin() {
     event.preventDefault();
     try {
       const response = await axios.post(
-        `${process.env.REACT_APP_BASE_API_URL}/adminLogin/verifyOtp`, 
+        `https://buildwell-engineering.vercel.app/adminLogin/verifyOtp`, 
         { email: data.email, otp }
       );
 
