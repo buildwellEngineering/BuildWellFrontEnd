@@ -10,9 +10,14 @@ import { faBars } from '@fortawesome/free-solid-svg-icons';
 import './styles/AdminDashboard.css';
 import logo123 from '../../assests/Images/download.png';
 import { useSelector } from 'react-redux';
+import { logout } from '../../store/slices/LoginStatusSlice';
+import { useDispatch } from 'react-redux';
+import Cookies from 'js-cookie';
+
 
 export default function AdminDashboard() {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const loginStatus = useSelector((state)=>state.LoginStatus.isLoggedIn);
 
@@ -21,6 +26,17 @@ export default function AdminDashboard() {
       navigate('/adminLogin');
     }
   },[]); 
+
+  const handleLogout =async()=>{
+    // Remove the accessToken cookie
+  Cookies.remove('accessToken');
+
+  // Dispatch the logout action
+  dispatch(logout());
+
+  // Optionally, you may want to redirect the user to a different page
+  navigate('/');
+  }
 
   return (
     <>
@@ -59,8 +75,8 @@ export default function AdminDashboard() {
                   </Link>
               </li>
               <li className='border-bottom border-black py-1'>
-                  <Link to='/' className='text-decoration-none' style={{color:'#00365E',fontSize:'30px',fontFamily:'Georgia'}}>
-                    Home Page
+                  <Link to='/' className='text-decoration-none text-danger' onClick={handleLogout} style={{color:'#00365E',fontSize:'30px',fontFamily:'Georgia'}}>
+                    Logout
                   </Link>
               </li>
             </ul>

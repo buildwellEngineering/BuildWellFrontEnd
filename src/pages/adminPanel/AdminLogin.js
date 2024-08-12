@@ -4,7 +4,7 @@ import './styles/Admin.css';
 import AC from '../../assests/Images/loginPage.svg'; // Fixed the path typo
 import axios from 'axios';
 import { useDispatch } from 'react-redux';
-import { login, logout } from '../../store/slices/LoginStatusSlice';
+import { login } from '../../store/slices/LoginStatusSlice';
 import { useNavigate } from 'react-router-dom';
 
 export default function AdminLogin() {
@@ -46,7 +46,7 @@ export default function AdminLogin() {
       );
 
       dispatch(login());
-      document.cookie = `accessToken=${response.data.accessToken}; path=/;`;
+      // document.cookie = `accessToken=${response.data.accessToken}; path=/;`;
       setErrorMessage('');
       navigate('/adminPanel');
     } catch (error) {
