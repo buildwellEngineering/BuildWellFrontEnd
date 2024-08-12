@@ -66,6 +66,7 @@
   justify-content: center;
   align-items: center;
   height: 100vh; /* Adjust based on your layout needs */
+  background-color: white !important;
 }
 
 .spinner {
@@ -75,7 +76,6 @@
   width: 100px;
   height: 100px;
   animation: spin 1s linear infinite;
-  background-color: black;
 }
 
 /* Keyframes for spinning animation */
