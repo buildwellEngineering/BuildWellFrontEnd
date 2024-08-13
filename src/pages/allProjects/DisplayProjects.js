@@ -51,7 +51,7 @@ export default function DisplayProjects() {
   }
 
   return (
-    <div className='DisplayProjects' id="DisplayProjects">
+    <div className='DisplayProjects' id="DisplayProjects" style={{fontFamily:'arial'}}>
       <div className='container py-5'>
         <div className='row title'>
           <h2>Our Projects</h2>
