@@ -116,12 +116,14 @@ const Projects = () => {
 
       if (response.status === 201) {
         const data = response.data;
+        alert("Successfully added a project !!!");
         setNewProject({
           projectTitle: '',
           projectDescription: '',
           projectMediaUrl: null,
         });
       } else {
+        alert("Failed to add a project.")
         throw new Error('Failed to submit project.');
       }
     } catch (error) {
@@ -137,10 +139,12 @@ const Projects = () => {
       });
 
       if (response.status === 200) {
+        alert("Successfully deleted project.");
         const updatedProjects = projects.filter(project => project._id !== selectedProject._id);
         setProjects(updatedProjects);
         setSelectedProject({});
       } else {
+        alert("Failed to delete project.");
         throw new Error('Failed to delete project.');
       }
     } catch (error) {
@@ -164,10 +168,12 @@ const Projects = () => {
       if (response.status === 200) {
         const {data} = await axiosInstance.get('/projects/getProjects');
         setProjects(data);
-        
+        alert("Successfully updated project !!!");
+
         setSelectedProject(false);
 
       } else {
+        alert("Failed to update project.");
         throw new Error('Failed to update project.');
       }
     } catch (error) {

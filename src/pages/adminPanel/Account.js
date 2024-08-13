@@ -26,6 +26,8 @@ const Account = () => {
             setCurrentPassword('');
             setNewPassword('');
         } catch (error) {
+            alert('Error updating password, Please try again');
+
             setMessage(error.response?.data?.error || 'An error occurred');
         }
     };

@@ -30,33 +30,50 @@ export default function Content() {
         .catch(error => console.error('Error fetching achievements:', error));
 }, []);
 
-  const handleAddOrUpdate = () => {
-    if (editingId) {
-        // Update existing achievement
-        axiosInstance.put(`/update/counterUpdate/${editingId}`, newAchievement)
-        .then(response => {
-          setAchievements(achievements.map(achievement =>
-            achievement._id === editingId ? response.data : achievement
-          ));
-          resetForm();
-        })
-        .catch(error => console.error('Error updating achievement:', error));
-    } else {
-        // Add new achievement
-        axiosInstance.post('/update/counterAdd', newAchievement)
-            .then(response => {
-                setAchievements([...achievements, response.data]);
-                resetForm();
-            })
-            .catch(error => console.error('Error adding achievement:', error));
-    }
-  };
+const handleAddOrUpdate = () => {
+  if (editingId) {
+    // Update existing achievement
+    axiosInstance.put(`/update/counterUpdate/${editingId}`, newAchievement)
+      .then(response => {
+        setAchievements(achievements.map(achievement =>
+          achievement._id === editingId ? response.data : achievement
+        ));
+        alert("Updated Successfully !!!");
+        resetForm();
+      })
+      .catch(error => {
+        console.error('Error updating achievement:', error);
+        alert("Failed to update achievement. Please try again.");
+      });
+  } else {
+    // Add new achievement
+    axiosInstance.post('/update/counterAdd', newAchievement)
+      .then(response => {
+        setAchievements([...achievements, response.data]);
+        alert("Added Successfully !!!");
+        resetForm();
+      })
+      .catch(error => {
+        console.error('Error adding achievement:', error);
+        alert("Failed to add achievement. Please try again.");
+      });
+  }
+};
 
-  const handleDelete = (id) => {
-    axiosInstance.delete(`https://buildwell-engineering.vercel.app/update/counterDelete/${id}`)
-        .then(() => setAchievements(achievements.filter(achievement => achievement._id !== id)))
-        .catch(error => console.error('Error deleting achievement:', error));
-  };
+
+const handleDelete = (id) => {
+  axiosInstance.delete(`https://buildwell-engineering.vercel.app/update/counterDelete/${id}`)
+    .then(() => {
+      setAchievements(achievements.filter(achievement => achievement._id !== id));
+      alert("Deleted successfully !!!");
+    })
+    .catch(error => {
+      console.error('Error deleting achievement:', error);
+      alert("Failed to delete achievement. Please try again.");
+    });
+};
+
+  
 
   const resetForm = () => {
     setNewAchievement({ name: '', value: '' });
@@ -221,6 +238,8 @@ export default function Content() {
       if (response.status >= 200 && response.status < 300) {
         alert("Updated Successfully !!!");
       } else {
+        alert("Error updating About Us, Please try again");
+
         throw new Error('Failed to update data on the server');
       }
     } catch (error) {
@@ -247,6 +266,7 @@ export default function Content() {
       if (response.status >= 200 && response.status < 300) {
         alert("Updated Successfully !!!");
       } else {
+        alert("Error updating Our Mission and Our Technologies, Please try again");
         throw new Error('Failed to update data on the server');
       }
     } catch (error) {
@@ -280,6 +300,7 @@ export default function Content() {
         setHeaderImageChange1(false)
         setHeaderVideoChange0(false)
       } else {
+        alert("Error updating Header, Please try again");
         throw new Error('Failed to update data on the server');
       }
     } catch (error) {
