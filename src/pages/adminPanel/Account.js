@@ -6,9 +6,10 @@ const Account = () => {
     const [currentPassword, setCurrentPassword] = useState('');
     const [newPassword, setNewPassword] = useState('');
     const [message, setMessage] = useState('');
-    
+    const [showCurrentPassword, setShowCurrentPassword] = useState(false);
+    const [showNewPassword, setShowNewPassword] = useState(false);
+
     const axiosInstance = useAxiosInstance();
- 
 
     const handleChangePassword = async (e) => {
         e.preventDefault();
@@ -25,9 +26,7 @@ const Account = () => {
             setCurrentPassword('');
             setNewPassword('');
         } catch (error) {
-           
-                setMessage(error.response?.data?.error || 'An error occurred');
-
+            setMessage(error.response?.data?.error || 'An error occurred');
         }
     };
 
@@ -48,23 +47,35 @@ const Account = () => {
                     <div>
                         <label>Current Password:</label>
                         <input
-                            type="password"
+                            type={showCurrentPassword ? 'text' : 'password'}
                             value={currentPassword}
                             onChange={(e) => setCurrentPassword(e.target.value)}
                             required
                         />
+                        <button
+                            type="button"
+                            onClick={() => setShowCurrentPassword(!showCurrentPassword)}
+                        >
+                            {showCurrentPassword ? 'Hide' : 'Show'}
+                        </button>
                     </div>
                     <div>
                         <label>New Password:</label>
                         <input
-                            type="password"
+                            type={showNewPassword ? 'text' : 'password'}
                             value={newPassword}
                             onChange={(e) => setNewPassword(e.target.value)}
                             required
                         />
+                        <button
+                            type="button"
+                            onClick={() => setShowNewPassword(!showNewPassword)}
+                        >
+                            {showNewPassword ? 'Hide' : 'Show'}
+                        </button>
                     </div>
                     <div className='d-flex justify-content-end align-items-center'>
-                    <button type="submit" className='admin-btn p-2 my-2'>Change Password</button>
+                        <button type="submit" className='admin-btn p-2 my-2'>Change Password</button>
                     </div>
                 </form>
             </div>

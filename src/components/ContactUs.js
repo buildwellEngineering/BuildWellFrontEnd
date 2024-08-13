@@ -89,6 +89,8 @@ export default function ContactUs() {
       message: sanitizeInput(data.message || ''),
     };
 
+    console.log(sanitizedData)
+
 
     try {
       const response = await axios.post(`https://buildwell-engineering.vercel.app/messages/form/submit`, { data:sanitizedData });

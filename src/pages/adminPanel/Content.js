@@ -219,6 +219,7 @@ export default function Content() {
       const response = await axiosInstance.put('/update/aboutUs',formData);
 
       if (response.status >= 200 && response.status < 300) {
+        alert("Updated Successfully !!!");
       } else {
         throw new Error('Failed to update data on the server');
       }
@@ -244,6 +245,7 @@ export default function Content() {
       const response = await axiosInstance.put('/update/ourMissionOurTechnologies', formData);
 
       if (response.status >= 200 && response.status < 300) {
+        alert("Updated Successfully !!!");
       } else {
         throw new Error('Failed to update data on the server');
       }
@@ -274,6 +276,7 @@ export default function Content() {
 
 
       if (response.status >= 200 && response.status < 300) {
+        alert("Updated Successfully !!!");
         setHeaderImageChange1(false)
         setHeaderVideoChange0(false)
       } else {
