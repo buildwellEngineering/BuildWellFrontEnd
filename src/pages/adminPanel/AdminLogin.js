@@ -42,13 +42,13 @@ export default function AdminLogin() {
     try {
       const response = await axios.post(
         `https://buildwell-engineering.vercel.app/adminLogin/verifyOtp`, 
-        { email: data.email, otp }
+        { email: data.email, otp },{withCredentials:true}
       );
 
+
       dispatch(login());
-      // document.cookie = `accessToken=${response.data.accessToken}; path=/;`;
       setErrorMessage('');
-      navigate('/adminPanel');
+      navigate('/adminPanel/');
     } catch (error) {
       console.error("Error verifying OTP:", error);
       
