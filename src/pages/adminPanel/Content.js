@@ -106,7 +106,7 @@ export default function Content() {
 
     const fetchDataOurMissionOurTechnologies = async () => {
       try {
-        const response = await axios.get(`https://build-well-front-end-three.vercel.app/homePage/getData/ourMissionOurTechnologies`);
+        const response = await axios.get(`https://buildwell-engineering.vercel.app/homePage/getData/ourMissionOurTechnologies`);
         const record = response.data;
         dispatch(setSectionData({ sectionName: 'ourMissionOurTechnologies', data: record }));
       } catch (error) {
@@ -127,7 +127,7 @@ export default function Content() {
 
     const fetchDataHeader = async () => {
       try {
-        const response = await axios.get(`https://build-well-front-end-three.vercel.app/homePage/getData/header`);
+        const response = await axios.get(`https://buildwell-engineering.vercel.app/homePage/getData/header`);
         const record = response.data;
         dispatch(setSectionData({ sectionName: 'header', data: record }));
       } catch (error) {
