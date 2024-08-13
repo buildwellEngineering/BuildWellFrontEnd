@@ -26,7 +26,7 @@ export default function Projects() {
 
   const fetchHomePageProjects = async () => {
     try {
-      const response = await axios.get(`https://buildwell-engineering.vercel.app/homePage/getData/projects`);
+      const response = await axios.get(`https://build-well-front-end-three.vercel.app/homePage/getData/projects`);
 
       setProjects(response.data);
       setLoading(false);
@@ -62,7 +62,7 @@ export default function Projects() {
           <div className="projectsLine mb-xl-2"></div>
         </div>
         <div className="row px-md-5 px-3">
-          {projects.map((e, index) => (
+          {projects && projects.map((e, index) => (
             <div className="col-12 col-lg-6" key={index}>
               <div className="image-container rounded-3">
                 <Link to='/allProjects'>

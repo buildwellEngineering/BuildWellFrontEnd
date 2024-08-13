@@ -91,7 +91,7 @@ export default function ContactUs() {
 
 
     try {
-      const response = await axios.post(`https://buildwell-engineering.vercel.app/messages/form/submit`, { data:sanitizedData });
+      const response = await axios.post(`https://build-well-front-end-three.vercel.app/messages/form/submit`, { data:sanitizedData });
       alert('Message sent successfully !!!')
       setData({
         firstName: '',
