@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import './styles/Projects.css'
 import useAxiosInstance from '../../axiosInstance/AxiosInstance';
+import axios from 'axios';
 
 const Projects = () => {
 
@@ -163,6 +164,7 @@ const Projects = () => {
       formData.append('_id', selectedProject._id);
       formData.append('imageUpdated', newImage ? 'true' : 'false'); 
 
+      console.log(selectedProject.projectDisplay)
 
       const response = await axiosInstance.put(`/projects/update`, formData);
 
