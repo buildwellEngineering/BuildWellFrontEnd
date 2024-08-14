@@ -63,7 +63,7 @@ const Projects = () => {
   };
 
   const handleDisplayChange = (e) => {
-    setSelectedProject({ ...selectedProject, projectDisplay: e.target.checked })
+    setSelectedProject({ ...selectedProject, projectDisplay: e.target.checked ? true : false  })
   }
 
   const handleReset = () => {
