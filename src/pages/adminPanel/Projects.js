@@ -159,6 +159,7 @@ const Projects = () => {
       formData.append('title', selectedProject.projectTitle);
       formData.append('description', selectedProject.projectDescription);
       formData.append('mediaUrlupdate', selectedProject.projectMediaUrl);
+      formData.append('projectDisplay',setSelectedProject.projectDisplay);
       formData.append('_id', selectedProject._id);
       formData.append('imageUpdated', newImage ? 'true' : 'false'); 
 
