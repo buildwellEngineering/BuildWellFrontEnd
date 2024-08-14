@@ -159,13 +159,13 @@ const Projects = () => {
       formData.append('title', selectedProject.projectTitle);
       formData.append('description', selectedProject.projectDescription);
       formData.append('mediaUrlupdate', selectedProject.projectMediaUrl);
-      formData.append('projectDisplay',setSelectedProject.projectDisplay);
+      formData.append('projectDisplay',selectedProject.projectDisplay);
       formData.append('_id', selectedProject._id);
       formData.append('imageUpdated', newImage ? 'true' : 'false'); 
 
-      console.log(selectedProject.projectDisplay)
 
       const response = await axiosInstance.put(`/projects/update`, formData);
+
 
       if (response.status === 200) {
         const {data} = await axiosInstance.get('/projects/getProjects');
