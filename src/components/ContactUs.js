@@ -164,7 +164,7 @@ export default function ContactUs() {
           <div className="col-12 col-lg-5 contact-left">
             <h2 className="py-2" style={{ color: '#00365E' }}>Inquiries</h2>
             <p className="py-2" style={{ fontWeight: 'light', fontSize: '1.2rem' }}>
-              For any inquiries, questions or commendations, please call: 9833758761 or fill out the following form
+              For any inquiries, questions or commendations, please call: <b>9833758761</b> or fill out the following form
             </p>
             <form onSubmit={submitHandler}>
               <div>
@@ -206,9 +206,9 @@ export default function ContactUs() {
                 SEC-17 VASHI, NAVI-MUMBAI
               </p>
               <p className="py-2" style={{ fontWeight: 'light', fontSize: '1.2rem' }}>
-                buildwellengineering.com <br />
-                Contact No: 9833758761 <br />
-                Mail: Bwell.engineering@gmail.com
+                Site: <b>buildwellengineering.com</b> <br />
+                Contact No: <b>9833758761</b> <br />
+                Mail: <b>Bwell.engineering@gmail.com</b>
               </p>
             </div>
             <div className="quote mt-auto">
