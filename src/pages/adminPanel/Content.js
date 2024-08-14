@@ -123,7 +123,7 @@ const handleDelete = (id) => {
 
     const fetchDataOurMissionOurTechnologies = async () => {
       try {
-        const response = await axios.get(`https://buildwell-engineering.vercel.app/homePage/getData/ourMissionOurTechnologies`);
+        const response = await axios.get(`https://buildwell-engineering.vercel.app/homePage/getData/ourMissionOurTechnologies`,{withCredentials:true});
         const record = response.data;
         dispatch(setSectionData({ sectionName: 'ourMissionOurTechnologies', data: record }));
       } catch (error) {
@@ -144,7 +144,7 @@ const handleDelete = (id) => {
 
     const fetchDataHeader = async () => {
       try {
-        const response = await axios.get(`https://buildwell-engineering.vercel.app/homePage/getData/header`);
+        const response = await axios.get(`https://buildwell-engineering.vercel.app/homePage/getData/header`,{withCredentials:true});
         const record = response.data;
         dispatch(setSectionData({ sectionName: 'header', data: record }));
       } catch (error) {

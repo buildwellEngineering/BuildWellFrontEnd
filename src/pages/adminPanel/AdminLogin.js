@@ -24,7 +24,7 @@ export default function AdminLogin() {
     event.preventDefault();
     try {
       const response = await axios.post(`https://buildwell-engineering.vercel.app/adminLogin/login`, 
-        data
+        data,{withCredentials:true}
       );
 
       if (response.data.msg === 'OTP sent to your email. Please verify to continue.') {

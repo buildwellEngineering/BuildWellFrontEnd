@@ -3,7 +3,6 @@
 import React, { useEffect, useState } from 'react';
 import './styles/Projects.css'
 import useAxiosInstance from '../../axiosInstance/AxiosInstance';
-import axios from 'axios';
 
 const Projects = () => {
 

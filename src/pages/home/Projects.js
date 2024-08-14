@@ -26,7 +26,7 @@ export default function Projects() {
 
   const fetchHomePageProjects = async () => {
     try {
-      const response = await axios.get(`https://buildwell-engineering.vercel.app/homePage/getData/projects`);
+      const response = await axios.get(`https://buildwell-engineering.vercel.app/homePage/getData/projects`,{withCredentials:true});
 
       setProjects(response.data);
       setLoading(false);
