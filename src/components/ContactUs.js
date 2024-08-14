@@ -206,9 +206,9 @@ export default function ContactUs() {
                 SEC-17 VASHI, NAVI-MUMBAI
               </p>
               <p className="py-2" style={{ fontWeight: 'light', fontSize: '1.2rem' }}>
-                Site: <b>buildwellengineering.com</b> <br />
-                Contact No: <b>9833758761</b> <br />
-                Mail: <b>Bwell.engineering@gmail.com</b>
+              <b>Site: buildwellengineering.com</b> <br />
+              <b>Contact No: 9833758761</b> <br />
+              <b>Mail: Bwell.engineering@gmail.com</b>
               </p>
             </div>
             <div className="quote mt-auto">
