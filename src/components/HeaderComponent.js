@@ -5,7 +5,7 @@ import './styles/HeaderComponent.css';
 export default function HeaderComponent(props) {
 
     // const {mediaVideo, mediaImage, text1, text2, text3} = props
-    const {mediaImageDesktop, mediaImage, text1, text2, text3} = props
+    const {mediaImageDesktop, mediaImage, text1, text2, text3} = props;
 
 
  
