@@ -16,12 +16,12 @@ export default function OurMissionComponent(props) {
                         <div className="col-12 col-lg-6 px-xl-5 py-sm-3 py-5">
                             <h1 className="our-mission-title">OUR MISSION</h1>
                             <div className="ourMissionLine mb-5"></div>
-                            <p className="mt-3 fw-light">{ourMissionPara}</p>
+                            <p className="mt-3 ">{ourMissionPara}</p>
                             <br />
                             <br />
                             <h1 className="our-mission-title">OUR TECHNOLOGIES</h1>
                             <div className="ourMissionLine mb-5"></div>
-                            <p className="mt-3 fw-light">{ourTechnologiesPara}</p>
+                            <p className="mt-3 ">{ourTechnologiesPara}</p>
                         </div>
                         <div className="col-lg-6 d-none d-lg-block">
                         </div>
