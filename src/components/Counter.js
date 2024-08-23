@@ -10,7 +10,7 @@ export default function Counter() {
 
     useEffect(() => {
         // Fetch achievements from the backend when the component mounts
-        axios.get(`https://buildwell-engineering.vercel.app/homePage/getData/counter`)
+        axios.get(`https://buildwell-engineering-gray.vercel.app/homePage/getData/counter`)
             .then(response => {
                 const data = response.data;
                 // Ensure the data is an array
