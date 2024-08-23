@@ -43,7 +43,7 @@ export default function Header() {
   return (
     <section id="Header" className="scroll-section">
       <HeaderComponent
-        mediaVideo={headerData.sectionMediaUrl[0]} 
+        mediaImageDesktop={headerData.sectionMediaUrl[0]} 
         mediaImage={headerData.sectionMediaUrl[1]} 
         text1={sectionTextParts[0]}
         text2={sectionTextParts[1]}
