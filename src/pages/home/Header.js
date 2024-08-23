@@ -16,7 +16,7 @@ export default function Header() {
   useEffect(() => {
     const fetchHeaderData = async () => {
       try {
-        const response = await axios.get(`https://buildwell-engineering.vercel.app/homePage/getData/header`,{withCredentials:true});
+        const response = await axios.get(`https://buildwell-engineering-gray.vercel.app/homePage/getData/header`,{withCredentials:true});
         dispatch(setSectionData({ sectionName: 'header', data: response.data }));
         setLoading(false); 
       } catch (error) {
