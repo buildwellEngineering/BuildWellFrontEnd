@@ -160,3 +160,13 @@
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
 }
+
+.classHeightForMobile{
+      height:300px;
+}
+
+@media screen and (min-width:768px){
+   .classHeightForMobile{
+      height:500px !important;
+   }
+}
