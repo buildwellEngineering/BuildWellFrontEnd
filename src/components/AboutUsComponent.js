@@ -40,7 +40,7 @@ export default function AboutUsComponent(props) {
             <div className="col-12 col-lg-6 px-lg-5 offset-lg-6 py-sm-3 py-5">
               <h1 className="about-us-title" style={{ fontSize: '2.5rem', color: '#00365E' }}>ABOUT US</h1>
               <div className="aboutUsLine mb-5"></div>
-              <p className="mt-3 fw-light">
+              <p className="mt-3">
                 {renderTextWithLink(text)}
               </p>
             </div>
