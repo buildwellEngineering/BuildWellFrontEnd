@@ -17,7 +17,8 @@ export default function Content() {
 
   const [aboutusImageChange,setAboutusImageChange] = useState(false);
   const [ourMissionOurTechnologiesImageChange,setOurMissionOurTechnologiesImageChange] = useState(false);
-  const [headerVideoChange0,setHeaderVideoChange0] = useState(false);
+  // const [headerVideoChange0,setHeaderVideoChange0] = useState(false);
+  const [mediaImageDesktopChange1,setMediaImageDesktopChange1] = useState(false);
   const [headerImageChange1,setHeaderImageChange1] = useState(false);
 
   const [achievements, setAchievements] = useState([]);
@@ -201,17 +202,20 @@ const handleDelete = (id) => {
     if (type === 'file') {
      if(files && files.length > 0){
       const file= files[0]
-      if(name==='videoFile'){
-        console.log(file)
+      if(name==='mediaImageDesktopFile'){
+        // console.log(file)
         setHeader({...header, sectionMediaUrl: [file, header.sectionMediaUrl[1]]})
-        setHeaderVideoChange0(true)
+        // setHeaderVideoChange0(true)
+        setMediaImageDesktopChange1(true)
+
       }
       if(name==='imageFile'){
         setHeader({...header, sectionMediaUrl: [header.sectionMediaUrl[0], file]})
         setHeaderImageChange1(true)
       }
      }else{
-      setHeaderVideoChange0(false);
+      // setHeaderVideoChange0(false);
+       setMediaImageDesktopChange1(false);
       setHeaderImageChange1(false);
       e.target.value=null
      }
@@ -281,14 +285,18 @@ const handleDelete = (id) => {
     const formData = new FormData();
     formData.append('sectionName', 'header');
     formData.append('sectionText', header.sectionText);
-    formData.append('videoChange0', headerVideoChange0.toString());
+    // formData.append('videoChange0', headerVideoChange0.toString());
+    formData.append('mediaImageDesktopChange1', mediaImageDesktopChange1.toString());
     formData.append('imageChange1', headerImageChange1.toString());
 
     if (headerImageChange1) {
       formData.append('imageFile', header.sectionMediaUrl[1]);
     }
-    if (headerVideoChange0){
-      formData.append('videoFile', header.sectionMediaUrl[0])
+    // if (headerVideoChange0){
+    //   formData.append('videoFile', header.sectionMediaUrl[0])
+    // }
+    if (mediaImageDesktopChange1) {
+      formData.append('mediaImageDesktopFile', header.sectionMediaUrl[0]);
     }
 
     try {
@@ -298,7 +306,7 @@ const handleDelete = (id) => {
       if (response.status >= 200 && response.status < 300) {
         alert("Updated Successfully !!!");
         setHeaderImageChange1(false)
-        setHeaderVideoChange0(false)
+        setMediaImageDesktopChange1(false)
       } else {
         alert("Error updating Header, Please try again");
         throw new Error('Failed to update data on the server');
@@ -312,6 +320,9 @@ const handleDelete = (id) => {
   const mediaPreviewAboutUS = aboutusImageChange ? URL.createObjectURL(aboutUs.sectionMediaUrl) : aboutUs.sectionMediaUrl;
   const mediaPreviewOurMissionOurtechnologies = ourMissionOurTechnologiesImageChange ? URL.createObjectURL(ourMissionOurTechnologies.sectionMediaUrl) : ourMissionOurTechnologies.sectionMediaUrl;
   const mediaPreviewHeader1 = headerImageChange1 ? URL.createObjectURL(header.sectionMediaUrl[1]) : header.sectionMediaUrl[1];
+
+  const mediaImageDesktopPreviewHeader2 = mediaImageDesktopChange1 ? URL.createObjectURL(header.sectionMediaUrl[0]) : header.sectionMediaUrl[0];
+
 
   return (
     <div className='p-4'>
@@ -374,7 +385,7 @@ const handleDelete = (id) => {
 
       <>
         <div style={{ height: '500px !important' }} className='my-2'>
-          <HeaderComponent mediaVideo={header.sectionMediaUrl[0]} mediaImage={mediaPreviewHeader1} text1={header.sectionText.split(';')[0]} text2={header.sectionText.split(';')[1]} text3={header.sectionText.split(';')[2]} />
+          <HeaderComponent /*mediaVideo={header.sectionMediaUrl[0]}*/ mediaImageDesktop={mediaImageDesktopPreviewHeader2} mediaImage={mediaPreviewHeader1} text1={header.sectionText.split(';')[0]} text2={header.sectionText.split(';')[1]} text3={header.sectionText.split(';')[2]} />
         </div>
         <div>
           <form onSubmit={handleSubmitHeader}>
@@ -390,9 +401,13 @@ const handleDelete = (id) => {
               <label>Text 3: </label>
               <input type='text' name='sectionText3' value={header.sectionText.split(';')[2]} onChange={(e) => setHeader({ ...header, sectionText: `${header.sectionText.split(';')[0]};${header.sectionText.split(';')[1]};${e.target.value}` })} />
             </div>
+            // <div>
+            //   <label>Video: </label>
+            //   <input type='file' name='videoFile' accept="video/mp4" onChange={changeHeader} className='p-2' style={{ height: 'auto' }} />
+            // </div>
             <div>
-              <label>Video: </label>
-              <input type='file' name='videoFile' accept="video/mp4" onChange={changeHeader} className='p-2' style={{ height: 'auto' }} />
+              <label>Image For Desktop: </label>
+              <input type='file' name='mediaImageDesktopFile' onChange={changeHeader} className='p-2' style={{ height: 'auto' }} />
             </div>
             <div>
               <label>Image: </label>
