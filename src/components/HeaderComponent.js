@@ -77,10 +77,10 @@ export default function HeaderComponent(props) {
       <header className="header d-flex justify-content-center align-items-center">
         <div className="container-fluid p-0 m-0 header-video-container">
 
-          <div className="header-image d-none d-sm-flex">
+          <div className="header-image d-none d-sm-flex" style={{width:'100vw'}}>
             <img 
               src={mediaImageDesktop} 
-              className="img-fluid p-0 m-0" 
+              className="img-fluid p-0 m-0 w-100" 
               alt="Our Mission/Photo by 500photos.com: https://www.pexels.com/photo/tower-crane-during-daytime-93400/" 
             />
           </div>
