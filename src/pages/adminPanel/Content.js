@@ -401,10 +401,6 @@ const handleDelete = (id) => {
               <label>Text 3: </label>
               <input type='text' name='sectionText3' value={header.sectionText.split(';')[2]} onChange={(e) => setHeader({ ...header, sectionText: `${header.sectionText.split(';')[0]};${header.sectionText.split(';')[1]};${e.target.value}` })} />
             </div>
-            // <div>
-            //   <label>Video: </label>
-            //   <input type='file' name='videoFile' accept="video/mp4" onChange={changeHeader} className='p-2' style={{ height: 'auto' }} />
-            // </div>
             <div>
               <label>Image For Desktop: </label>
               <input type='file' name='mediaImageDesktopFile' onChange={changeHeader} className='p-2' style={{ height: 'auto' }} />
