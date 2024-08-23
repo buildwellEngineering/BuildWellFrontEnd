@@ -63,7 +63,7 @@
 
 
 import React from 'react';
-import header_down_arrow from '../assests/Images/header_down_arrow.png'; // Fixed the typo from 'assests' to 'assets'
+import header_down_arrow from '../assests/Images/header_down_arrow.png'; 
 import './styles/HeaderComponent.css';
 
 export default function HeaderComponent(props) {
