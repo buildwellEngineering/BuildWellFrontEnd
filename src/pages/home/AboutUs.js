@@ -42,7 +42,7 @@ export default function AboutUs() {
   useEffect(() => {
     const fetchAboutUsData = async () => {
       try {
-        const response = await axios.get(`https://buildwell-engineering.vercel.app/homePage/getData/aboutUs`,{withCredentials:true});
+        const response = await axios.get(`https://buildwell-engineering-gray.vercel.app/homePage/getData/aboutUs`,{withCredentials:true});
         dispatch(setSectionData({ sectionName: 'aboutUs', data: response.data }));
         setLoading(false);
       } catch (error) {
