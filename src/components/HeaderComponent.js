@@ -76,26 +76,6 @@ export default function HeaderComponent(props) {
     return (
       <header className="header d-flex justify-content-center align-items-center">
         <div className="container-fluid p-0 m-0 header-video-container">
-          {/* Uncomment and use video functionality if needed */}
-          {/* 
-          {isVideoBlob ? (
-            <video autoPlay muted loop className="header-video d-none d-sm-flex">
-              <source src={URL.createObjectURL(mediaVideo)} type="video/mp4" />
-              Your browser does not support the video tag.
-            </video>
-          ) : (
-            mediaVideo ? (
-              <video autoPlay muted loop className="header-video d-none d-sm-flex">
-                <source src={mediaVideo} type="video/mp4" />
-                Your browser does not support the video tag.
-              </video>
-            ) : (
-              <div className="header-video d-none d-sm-flex">
-                {/* Placeholder content */}
-              </div>
-            )
-          )}
-          */}
 
           <div className="header-image d-none d-sm-flex">
             <img 
