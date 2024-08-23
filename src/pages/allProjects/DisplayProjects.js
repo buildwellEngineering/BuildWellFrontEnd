@@ -60,7 +60,7 @@ export default function DisplayProjects() {
         </div>
         <div className='row py-5'>
           {projects.map((project, index) => (
-            <div className="col-12 col-lg-4" key={index} style={{height:'500px'}}>
+            <div className="col-12 col-lg-4 classHeightForMobile" key={index} /*style={{height:'500px'}}*/ >
               <div className="image-container" onClick={() => handleImageClick(index)}>
                 <img src={project.projectMediaUrl} className="img-fluid" alt={project.projectTitle} />
                 <div className="image-content mt-1 mb-2">{project.projectTitle}</div>
