@@ -60,6 +60,13 @@ Additional resources:
 - [Advanced Configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
 - [Troubleshooting Build Issues](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
 
+🧑‍💻 Developers
+This website was crafted by a team of dedicated developers:
+
+Atharva Nangare (atharvagithubgg)
+Dipesh Shetty (DIPESHSHETTY)
+Siddhesh Tambe (SiddheshTambe45)
+
 ## 🏆 About Us
 
 At BuildWell Construction, we are committed to excellence. From our beginnings as OM Construction to our current role as leaders in the industry, we bring innovation and dedication to every project. Explore our site to see how we build the future, one project at a time.
