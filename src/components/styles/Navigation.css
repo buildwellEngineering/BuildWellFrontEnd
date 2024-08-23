@@ -62,7 +62,7 @@ nav button {
 }
 @media screen and (max-width: 576px) {
     nav img {
-        width: 150px;
+        width: 220px; /* 150px */
         height: 30px;
     }
 }
