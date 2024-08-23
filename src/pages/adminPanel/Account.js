@@ -49,32 +49,21 @@ const Account = () => {
                     <div>
                         <label>Current Password:</label>
                         <input
-                            type={showCurrentPassword ? 'text' : 'password'}
+                            type='text' 
                             value={currentPassword}
                             onChange={(e) => setCurrentPassword(e.target.value)}
                             required
                         />
-                        <button
-                            type="button"
-                            onClick={() => setShowCurrentPassword(!showCurrentPassword)}
-                        >
-                            {showCurrentPassword ? 'Hide' : 'Show'}
-                        </button>
+                    
                     </div>
                     <div>
                         <label>New Password:</label>
                         <input
-                            type={showNewPassword ? 'text' : 'password'}
+                            type='text'
                             value={newPassword}
                             onChange={(e) => setNewPassword(e.target.value)}
                             required
                         />
-                        <button
-                            type="button"
-                            onClick={() => setShowNewPassword(!showNewPassword)}
-                        >
-                            {showNewPassword ? 'Hide' : 'Show'}
-                        </button>
                     </div>
                     <div className='d-flex justify-content-end align-items-center'>
                         <button type="submit" className='admin-btn p-2 my-2'>Change Password</button>
