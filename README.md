@@ -63,9 +63,9 @@ Additional resources:
 🧑‍💻 Developers
 This website was crafted by a team of dedicated developers:
 
-Atharva Nangare (atharvagithubgg)
-Dipesh Shetty (DIPESHSHETTY)
-Siddhesh Tambe (SiddheshTambe45)
+- **[Atharva Nangare](https://github.com/atharvagithubgg)**
+- **[Dipesh Shetty](https://github.com/DIPESHSHETTY)**
+- **[Siddhesh Tambe](https://github.com/SiddheshTambe45)**
 
 ## 🏆 About Us
 
