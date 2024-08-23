@@ -19,25 +19,27 @@ export default function HeaderComponent(props) {
   return (
     <header className="header d-flex justify-content-center align-items-center">
         <div className="container-fluid p-0 m-0 header-video-container">
-        //   {isVideoBlob ? (
-        //   // Attempt to use createObjectURL for local video file
-        //   <video autoPlay muted loop className="header-video d-none d-sm-flex">
-        //     <source src={URL.createObjectURL(mediaVideo)} type="video/mp4" />
-        //     Your browser does not support the video tag.
-        //   </video>
-        // ) : ( // Fallback for non-video Blob or URL
-        //   mediaVideo ? ( // If mediaVideo is a URL, use it directly
-        //     <video autoPlay muted loop className="header-video d-none d-sm-flex">
-        //       <source src={mediaVideo} type="video/mp4" />
-        //       Your browser does not support the video tag.
-        //     </video>
-        //   ) : (
-        //     // Display a placeholder (e.g., an image) if no video is available
-        //     <div className="header-video d-none d-sm-flex">
-        //       {/* Placeholder content */}
-        //     </div>
-        //   )
-        // )}
+      {/*
+          {isVideoBlob ? (
+          // Attempt to use createObjectURL for local video file
+          <video autoPlay muted loop className="header-video d-none d-sm-flex">
+            <source src={URL.createObjectURL(mediaVideo)} type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+        ) : ( // Fallback for non-video Blob or URL
+          mediaVideo ? ( // If mediaVideo is a URL, use it directly
+            <video autoPlay muted loop className="header-video d-none d-sm-flex">
+              <source src={mediaVideo} type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+          ) : (
+            // Display a placeholder (e.g., an image) if no video is available
+            <div className="header-video d-none d-sm-flex">
+              {/* Placeholder content */}
+            </div>
+          )
+        )}
+*/}
 
     <div className="header-image d-none d-sm-flex ">
             <img src={mediaImageDesktop} className="img-fluid p-0 m-0" alt="Our Mission/Photo by 500photos.com: https://www.pexels.com/photo/tower-crane-during-daytime-93400/" />
