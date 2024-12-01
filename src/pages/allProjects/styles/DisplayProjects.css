@@ -117,7 +117,7 @@
     font-weight: bold;
     font-size: 1.4rem;
     color: #00365E !important;
-    font-family: cursive;
+    font-family: arial !important /* cursive */;
   }
   
   .DisplayProjects hr {
