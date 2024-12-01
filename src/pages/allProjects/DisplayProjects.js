@@ -168,6 +168,7 @@ export default function DisplayProjects() {
                   alt={project.projectTitle} 
                   onLoad={() => setImageLoading(false)} // Trigger on image load
                   onError={() => setImageLoading(false)} // Trigger on image error
+                  loading="lazy"
                 />
                 {imageLoading && <div className="image-loader">Loading...</div>} {/* Loader */}
                 <div className="image-content mt-1 mb-2">{project.projectTitle}</div>
@@ -188,6 +189,7 @@ export default function DisplayProjects() {
                 className="carousel-img" 
                 onLoad={handleImageLoad} // Trigger on image load
                 onError={handleImageError} // Trigger on image error
+                loading="lazy"
               />
               {imageLoading && <div className="image-loader">Loading...</div>} {/* Loader */}
             </div>
