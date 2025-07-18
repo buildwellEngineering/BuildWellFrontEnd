@@ -21,7 +21,7 @@ Ready to see how the magic happens? Here’s how you can run the project locally
 
 ### `npm test`
 
-🧪 **Testing:** Launch our test runner to ensure everything is working perfectly. Check out the [running tests](https://facebook.github.io/create-react-app/docs/running-tests) guide for more info.
+🧪 **Testing:** Launch our test runner to ensure everything is working perfectly. Check out the [running tests](https://facebook.github.io/create-react-app/docs/running-tests) guide for more information.
 
 ### `npm run build`
 
